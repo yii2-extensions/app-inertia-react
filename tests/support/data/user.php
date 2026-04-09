@@ -29,7 +29,7 @@ return [
         'password_reset_token' => '4BSNyiZNAuxjs5Mty990c47sVrgllIi_' . time(),
         'created_at' => 1391885313,
         'updated_at' => 1391885313,
-        'email' => 'troy.be|cker@example.com',
+        'email' => 'troy.becker@example.com',
         'status' => 0,
     ],
     [
