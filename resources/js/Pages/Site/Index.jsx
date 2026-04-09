@@ -182,7 +182,7 @@ export default function Index() {
                   rel="noopener noreferrer"
                   target="_blank"
                   className="editorial-card group flex flex-col gap-2.5 bg-card px-5 py-4"
-                  aria-label={`Learn more about ${ext.name}`}
+                  aria-label={`Learn more about ${ext.name} (opens in new tab)`}
                 >
                   <div className="flex items-start justify-between">
                     <span className="card-num">

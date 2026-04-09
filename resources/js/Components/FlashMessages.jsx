@@ -8,9 +8,30 @@ import { Button } from "@/Components/ui/button";
 const variantMap = {
   success: "success",
   error: "destructive",
+  errors: "destructive",
   danger: "destructive",
   info: "info",
   warning: "warning",
+};
+
+const normalizeMessage = (value) => {
+  if (typeof value === "string") return value;
+  if (typeof value === "number" || typeof value === "boolean") {
+    return String(value);
+  }
+  if (Array.isArray(value)) {
+    return value
+      .flatMap((item) => (Array.isArray(item) ? item : [item]))
+      .map((item) => String(item))
+      .join(" ");
+  }
+  if (typeof value === "object" && value !== null) {
+    return Object.values(value)
+      .flatMap((item) => (Array.isArray(item) ? item : [item]))
+      .map((item) => String(item))
+      .join(" ");
+  }
+  return "";
 };
 
 /**
@@ -29,12 +50,12 @@ export default function FlashMessages() {
     }
 
     const next = Object.entries(flash)
-      .filter(([, message]) => Boolean(message))
       .map(([type, message]) => ({
         id: crypto.randomUUID(),
         variant: variantMap[type] || "info",
-        message,
-      }));
+        message: normalizeMessage(message),
+      }))
+      .filter((alert) => alert.message.length > 0);
 
     setAlerts(next);
   }, [props.flash]);

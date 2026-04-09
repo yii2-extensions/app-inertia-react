@@ -401,8 +401,10 @@ button.desc::after {
 
 @media (prefers-reduced-motion: reduce) {
   .editorial-card,
+  .editorial-card::after,
   .btn-brand,
-  .btn-cream {
+  .btn-cream,
+  .btn-ghost-light {
     transition: none;
   }
 

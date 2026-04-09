@@ -8,8 +8,24 @@ import { Button } from "@/Components/ui/button";
  *
  * Honors the user's `prefers-color-scheme` until they pick an explicit value.
  */
+const getInitialTheme = () => {
+  if (document.documentElement.classList.contains("dark")) {
+    return "dark";
+  }
+
+  const stored = localStorage.getItem("theme");
+
+  if (stored === "dark" || stored === "light") {
+    return stored;
+  }
+
+  return window.matchMedia("(prefers-color-scheme: dark)").matches
+    ? "dark"
+    : "light";
+};
+
 export default function ThemeToggle() {
-  const [theme, setTheme] = useState("light");
+  const [theme, setTheme] = useState(getInitialTheme);
 
   const apply = useCallback((value, persist = true) => {
     setTheme(value);

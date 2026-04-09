@@ -202,10 +202,10 @@ export default function Contact() {
           <p className="mt-3 text-center text-xs text-muted-foreground">
             Prefer to start a conversation directly?{" "}
             <a
-              href="mailto:support@example.com"
+              href={`mailto:${props.supportEmail}`}
               className="font-semibold text-primary underline-offset-4 hover:underline"
             >
-              support@example.com
+              {props.supportEmail}
             </a>
           </p>
         </div>

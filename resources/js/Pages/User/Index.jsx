@@ -27,6 +27,7 @@ const STATUS_BADGE = {
   },
 };
 
+const USER_INDEX_ROUTE = "/user/index";
 const SORT_ORDER_ASC = 4;
 const SORT_ORDER_DESC = 3;
 
@@ -111,14 +112,14 @@ export default function Index({
 
     debounceRef.current = setTimeout(() => {
       router.get(
-        "/user/index",
+        USER_INDEX_ROUTE,
         buildSearchParams({
           username: filterUsername,
           email: filterEmail,
           status: filterStatus,
           sort: sortParam,
         }),
-        { preserveState: true, preserveScroll: true },
+        { preserveState: true, preserveScroll: true, replace: true },
       );
       debounceRef.current = null;
     }, 300);
@@ -129,7 +130,6 @@ export default function Index({
         debounceRef.current = null;
       }
     };
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [filterUsername, filterEmail, filterStatus]);
 
   const sortBy = (attribute) => {
@@ -142,7 +142,7 @@ export default function Index({
     setSortParam(next);
 
     router.get(
-      "/user/index",
+      USER_INDEX_ROUTE,
       buildSearchParams({
         username: filterUsername,
         email: filterEmail,
@@ -168,7 +168,7 @@ export default function Index({
     }
 
     router.get(
-      "/user/index",
+      USER_INDEX_ROUTE,
       {
         ...buildSearchParams({
           username: filterUsername,

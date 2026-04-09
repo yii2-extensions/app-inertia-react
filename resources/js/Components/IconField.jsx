@@ -19,6 +19,8 @@ export default function IconField({
   autoFocus,
   autoComplete,
 }) {
+  const errorId = id ? `${id}-error` : undefined;
+
   return (
     <div>
       <Label
@@ -44,13 +46,15 @@ export default function IconField({
           type={type}
           value={value}
           onChange={(event) => onChange(event.target.value)}
+          aria-invalid={Boolean(error)}
+          aria-describedby={error ? errorId : undefined}
           placeholder={placeholder}
           autoFocus={autoFocus}
           autoComplete={autoComplete}
           className="w-full border-0 bg-transparent px-3 py-2.5 text-[0.95rem] text-foreground outline-none placeholder:text-muted-foreground/60"
         />
       </div>
-      <FormError message={error} />
+      <FormError id={errorId} message={error} />
     </div>
   );
 }
