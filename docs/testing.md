@@ -1,82 +1,115 @@
 # Testing
 
-This package provides a consistent set of [Composer](https://getcomposer.org/) scripts for local validation.
+This package contains unit, functional, and acceptance test suites powered by
+[Codeception PHP Testing Framework](https://codeception.com/).
 
-Tool references:
+Tests are located in the `tests` directory. They are developed with [Codeception PHP Testing Framework](https://codeception.com/).
 
-- [Composer Require Checker](https://github.com/maglnet/ComposerRequireChecker) for dependency definition checks.
-- [Easy Coding Standard (ECS)](https://github.com/easy-coding-standard/easy-coding-standard) for coding standards.
-- [Infection](https://infection.github.io/) for mutation testing.
-- [PHPStan](https://phpstan.org/) for static analysis.
-- [PHPUnit](https://phpunit.de/) for unit tests.
-- [Rector](https://github.com/rectorphp/rector) for automated refactoring.
+By default, there are 3 test suites:
 
-## Automated refactoring (Rector)
+- `unit`
+- `functional`
+- `acceptance`
 
-Run Rector to apply automated code refactoring.
+## Running all tests
 
 ```bash
-composer rector
+vendor/bin/codecept run --env php-builtin
 ```
 
-## Coding standards (ECS)
+The command above will execute all test suites (unit, functional, and acceptance). Unit tests verify system components,
+functional tests emulate web requests, and acceptance tests run against a real HTTP server.
 
-Run Easy Coding Standard (ECS) and apply fixes.
+## Acceptance tests
+
+The `acceptance` suite is configured in `tests/acceptance.suite.yml`.
+
+### PhpBrowser (default)
+
+By default, acceptance tests use the `PhpBrowser` module and run against the built-in PHP web server started via the
+`php-builtin` environment.
+
+```bash
+# run all tests with built-in web server
+composer tests
+
+# run acceptance tests only
+vendor/bin/codecept run acceptance --env php-builtin
+```
+
+Because the React frontend is mounted client-side after hydration, acceptance tests under `PhpBrowser` assert against
+the initial Inertia payload emitted by the server (the `<script type="application/json">` element in the root view),
+not the final rendered DOM. This keeps the suite framework-agnostic and fast.
+
+### WebDriver + Selenium
+
+To exercise the real React runtime (navigation, `useForm`, client-side validation, shadcn/ui dialogs), switch the
+`acceptance` suite to use the `WebDriver` module. `tests/acceptance.suite.yml` contains an example WebDriver
+configuration (commented).
+
+1. Download and start [Selenium Server](https://www.selenium.dev/downloads/).
+2. Install the matching browser driver: [GeckoDriver](https://github.com/mozilla/geckodriver/releases) or [ChromeDriver](https://googlechromelabs.github.io/chrome-for-testing/).
+3. Build the frontend bundle so the acceptance suite serves production assets: `npm run build`.
+4. Update `tests/acceptance.suite.yml` to enable `WebDriver` and disable `PhpBrowser`.
+5. Run:
+
+```bash
+vendor/bin/codecept run acceptance --env php-builtin
+```
+
+## Running tests with Docker
+
+```bash
+docker compose exec -T php vendor/bin/codecept build
+docker compose exec -T php vendor/bin/codecept run
+```
+
+## Code coverage
+
+Code coverage is configured in `codeception.yml`. Run your tests and collect coverage with:
+
+```bash
+# collect coverage for all tests
+vendor/bin/codecept run --coverage --coverage-html --coverage-xml --env php-builtin
+
+# collect coverage only for unit tests
+vendor/bin/codecept run unit --coverage --coverage-html --coverage-xml --env php-builtin
+
+# collect coverage for unit and functional tests
+vendor/bin/codecept run functional,unit --coverage --coverage-html --coverage-xml --env php-builtin
+```
+
+You can see code coverage output under the `tests/support/output` directory.
+
+## Automated coding standards
+
+Run Easy Coding Standard with fixes:
 
 ```bash
 composer ecs
 ```
 
-## Dependency definition check
+## Static analysis
 
-Verify that runtime dependencies are correctly declared in `composer.json`.
-
-```bash
-composer check-dependencies
-```
-
-## Mutation testing (Infection)
-
-Run mutation testing.
-
-```bash
-composer mutation
-```
-
-Run mutation testing with static analysis enabled.
-
-```bash
-composer mutation-static
-```
-
-## Static analysis (PHPStan)
-
-Run static analysis.
+Run PHPStan:
 
 ```bash
 composer static
-```
-
-## Unit tests (PHPUnit)
-
-Run the full test suite.
-
-```bash
-composer tests
 ```
 
 ## Passing extra arguments
 
 Composer scripts support forwarding additional arguments using `--`.
 
-Run PHPUnit with code coverage report generation.
+Examples:
 
 ```bash
-composer tests -- --coverage-html code_coverage
+composer tests -- --filter LoginCest
+composer static -- --memory-limit=1G
 ```
 
-Run PHPStan with a different memory limit.
+## Next steps
 
-```bash
-composer static -- --memory-limit=512M
-```
+- 📚 [Installation Guide](installation.md)
+- ⚙️ [Configuration Reference](configuration.md)
+- 💡 [Usage Examples](examples.md)

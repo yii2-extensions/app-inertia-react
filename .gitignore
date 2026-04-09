@@ -4,6 +4,12 @@ code_coverage
 # codeception (if present)
 c3.php
 
+# build output
+public/build
+
+# database
+*.sqlite
+
 # composer
 composer.lock
 

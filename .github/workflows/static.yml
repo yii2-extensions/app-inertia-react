@@ -19,3 +19,5 @@ permissions:
 jobs:
   phpstan:
     uses: yii2-framework/actions/.github/workflows/phpstan.yml@main
+    with:
+      hook: vendor/bin/codecept build
