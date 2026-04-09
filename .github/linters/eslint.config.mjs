@@ -2,6 +2,9 @@ import pluginReact from "eslint-plugin-react";
 import eslintConfigPrettier from "eslint-config-prettier";
 
 export default [
+    {
+        files: ["**/*.{js,jsx,mjs,cjs}"],
+    },
     pluginReact.configs.flat.recommended,
     eslintConfigPrettier,
     {

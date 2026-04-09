@@ -47,7 +47,9 @@ createInertiaApp({
       throw new Error(`Page component "${name}" not found.`);
     }
 
-    page.default.layout = page.default.layout ?? ((children) => createElement(Layout, null, children));
+    page.default.layout =
+      page.default.layout ??
+      ((children) => createElement(Layout, null, children));
 
     return page;
   },

@@ -48,8 +48,7 @@ To exercise the real React runtime (navigation, `useForm`, client-side validatio
 configuration (commented).
 
 1. Download and start [Selenium Server](https://www.selenium.dev/downloads/).
-2. Install the corresponding browser driver (for example [GeckoDriver](https://github.com/mozilla/geckodriver/releases)
-   or [ChromeDriver](https://googlechromelabs.github.io/chrome-for-testing/)).
+2. Install the matching browser driver: [GeckoDriver](https://github.com/mozilla/geckodriver/releases) or [ChromeDriver](https://googlechromelabs.github.io/chrome-for-testing/).
 3. Build the frontend bundle so the acceptance suite serves production assets: `npm run build`.
 4. Update `tests/acceptance.suite.yml` to enable `WebDriver` and disable `PhpBrowser`.
 5. Run:

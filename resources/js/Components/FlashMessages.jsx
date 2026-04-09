@@ -43,7 +43,8 @@ export default function FlashMessages() {
     return null;
   }
 
-  const dismiss = (id) => setAlerts((current) => current.filter((alert) => alert.id !== id));
+  const dismiss = (id) =>
+    setAlerts((current) => current.filter((alert) => alert.id !== id));
 
   return (
     <div className="flex flex-col gap-3">

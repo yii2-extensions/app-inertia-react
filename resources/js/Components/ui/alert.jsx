@@ -14,7 +14,8 @@ const alertVariants = cva(
         destructive:
           "border-destructive/50 text-destructive bg-destructive/10 [&>svg]:text-destructive dark:border-destructive",
         info: "border-primary/50 text-primary bg-primary/10 [&>svg]:text-primary dark:border-primary",
-        warning: "border-amber-500/50 text-amber-700 dark:text-amber-400 bg-amber-500/10 [&>svg]:text-amber-600",
+        warning:
+          "border-amber-500/50 text-amber-700 dark:text-amber-400 bg-amber-500/10 [&>svg]:text-amber-600",
       },
     },
     defaultVariants: {
@@ -23,7 +24,10 @@ const alertVariants = cva(
   },
 );
 
-const Alert = React.forwardRef(function Alert({ className, variant, ...props }, ref) {
+const Alert = React.forwardRef(function Alert(
+  { className, variant, ...props },
+  ref,
+) {
   return (
     <div
       ref={ref}
@@ -34,7 +38,10 @@ const Alert = React.forwardRef(function Alert({ className, variant, ...props }, 
   );
 });
 
-const AlertTitle = React.forwardRef(function AlertTitle({ className, ...props }, ref) {
+const AlertTitle = React.forwardRef(function AlertTitle(
+  { className, ...props },
+  ref,
+) {
   return (
     <h5
       ref={ref}
@@ -44,7 +51,10 @@ const AlertTitle = React.forwardRef(function AlertTitle({ className, ...props },
   );
 });
 
-const AlertDescription = React.forwardRef(function AlertDescription({ className, ...props }, ref) {
+const AlertDescription = React.forwardRef(function AlertDescription(
+  { className, ...props },
+  ref,
+) {
   return (
     <div
       ref={ref}

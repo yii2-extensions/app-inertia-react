@@ -30,10 +30,15 @@ export default function IconField({
       <div
         className={cn(
           "flex items-center overflow-hidden rounded-lg border bg-background transition-all focus-within:border-primary focus-within:ring-4 focus-within:ring-primary/15",
-          error ? "border-destructive focus-within:border-destructive focus-within:ring-destructive/15" : "border-input",
+          error
+            ? "border-destructive focus-within:border-destructive focus-within:ring-destructive/15"
+            : "border-input",
         )}
       >
-        <Icon className="ml-3.5 size-[18px] shrink-0 text-muted-foreground" aria-hidden="true" />
+        <Icon
+          className="ml-3.5 size-[18px] shrink-0 text-muted-foreground"
+          aria-hidden="true"
+        />
         <input
           id={id}
           type={type}

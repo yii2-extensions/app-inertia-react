@@ -1,5 +1,13 @@
 import { Head } from "@inertiajs/react";
-import { ArrowUpRight, Bug, Cog, ListChecks, Mail, Search, Zap } from "lucide-react";
+import {
+  ArrowUpRight,
+  Bug,
+  Cog,
+  ListChecks,
+  Mail,
+  Search,
+  Zap,
+} from "lucide-react";
 
 const extensions = [
   {
@@ -79,7 +87,9 @@ export default function Index() {
               </h1>
 
               <p className="mt-2.5 max-w-[42ch] text-[0.9rem] leading-relaxed text-white/80">
-                A high-performance PHP framework for serious web applications. Fast, secure, professional, and now wired through Inertia &amp; React.
+                A high-performance PHP framework for serious web applications.
+                Fast, secure, professional, and now wired through Inertia &amp;
+                React.
               </p>
 
               <div className="mt-4 flex flex-wrap items-center gap-3">
@@ -116,7 +126,9 @@ export default function Index() {
               <dl className="grid grid-cols-2 gap-x-6 gap-y-5 border-t border-white/25 pt-6 font-mono text-[0.7rem] uppercase tracking-[0.18em] text-white/75">
                 <div>
                   <dt className="mb-1 text-white/65">Stack</dt>
-                  <dd className="font-semibold text-white">PHP 8.5 · React 19</dd>
+                  <dd className="font-semibold text-white">
+                    PHP 8.5 · React 19
+                  </dd>
                 </div>
                 <div>
                   <dt className="mb-1 text-white/65">Adapter</dt>
@@ -124,7 +136,9 @@ export default function Index() {
                 </div>
                 <div>
                   <dt className="mb-1 text-white/65">UI</dt>
-                  <dd className="font-semibold text-white">shadcn · Tailwind v4</dd>
+                  <dd className="font-semibold text-white">
+                    shadcn · Tailwind v4
+                  </dd>
                 </div>
                 <div>
                   <dt className="mb-1 text-white/65">Bundler</dt>
@@ -151,7 +165,8 @@ export default function Index() {
               </h2>
             </div>
             <p className="max-w-sm text-xs leading-relaxed text-muted-foreground">
-              The official extensions you reach for first. Click any card to read the full guide on yiiframework.com.
+              The official extensions you reach for first. Click any card to
+              read the full guide on yiiframework.com.
             </p>
           </header>
 
@@ -170,15 +185,22 @@ export default function Index() {
                   aria-label={`Learn more about ${ext.name}`}
                 >
                   <div className="flex items-start justify-between">
-                    <span className="card-num">{num} / {ext.tag}</span>
-                    <Icon className="size-[18px] text-muted-foreground transition-colors group-hover:text-primary" aria-hidden="true" />
+                    <span className="card-num">
+                      {num} / {ext.tag}
+                    </span>
+                    <Icon
+                      className="size-[18px] text-muted-foreground transition-colors group-hover:text-primary"
+                      aria-hidden="true"
+                    />
                   </div>
 
                   <h3 className="font-display text-[1.25rem] font-medium leading-tight tracking-[-0.01em] text-foreground">
                     {ext.name}
                   </h3>
 
-                  <p className="text-[0.78rem] leading-relaxed text-muted-foreground">{ext.description}</p>
+                  <p className="text-[0.78rem] leading-relaxed text-muted-foreground">
+                    {ext.description}
+                  </p>
 
                   <span className="mt-auto inline-flex items-center gap-1.5 text-xs font-medium text-primary">
                     Learn more

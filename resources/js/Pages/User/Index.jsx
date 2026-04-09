@@ -17,11 +17,13 @@ const STATUS_BADGE = {
   },
   [STATUS_INACTIVE]: {
     label: "Inactive",
-    className: "bg-amber-500/15 text-amber-600 border border-amber-500/30 dark:text-amber-400",
+    className:
+      "bg-amber-500/15 text-amber-600 border border-amber-500/30 dark:text-amber-400",
   },
   [STATUS_DELETED]: {
     label: "Deleted",
-    className: "bg-destructive/15 text-destructive border border-destructive/30",
+    className:
+      "bg-destructive/15 text-destructive border border-destructive/30",
   },
 };
 
@@ -86,7 +88,9 @@ export default function Index({
   const [filterUsername, setFilterUsername] = useState(filters.username || "");
   const [filterEmail, setFilterEmail] = useState(filters.email || "");
   const [filterStatus, setFilterStatus] = useState(filters.status ?? "");
-  const [sortParam, setSortParam] = useState(sortParamFromAttributes(sort.attributes));
+  const [sortParam, setSortParam] = useState(
+    sortParamFromAttributes(sort.attributes),
+  );
 
   const debounceRef = useRef(null);
   const skipDebounceRef = useRef(true);
@@ -150,7 +154,11 @@ export default function Index({
   };
 
   const goToPage = (page) => {
-    if (page < 1 || page > pagination.pageCount || page === pagination.currentPage) {
+    if (
+      page < 1 ||
+      page > pagination.pageCount ||
+      page === pagination.currentPage
+    ) {
       return;
     }
 
@@ -175,7 +183,11 @@ export default function Index({
   };
 
   const sortHeader = (attribute, label) => (
-    <th scope="col" aria-sort={ariaSort(sort.attributes, attribute)} className="px-4 py-3 text-left">
+    <th
+      scope="col"
+      aria-sort={ariaSort(sort.attributes, attribute)}
+      className="px-4 py-3 text-left"
+    >
       <button
         type="button"
         onClick={() => sortBy(attribute)}
@@ -215,13 +227,14 @@ export default function Index({
                     Directory
                   </h1>
                   <p className="text-[0.9rem] opacity-75">
-                    Browse, filter, and sort registered users. Use the search fields to find specific
-                    accounts.
+                    Browse, filter, and sort registered users. Use the search
+                    fields to find specific accounts.
                   </p>
                 </div>
                 <div className="mt-4">
                   <span className="inline-block rounded-full bg-white/20 px-4 py-1.5 text-sm font-medium backdrop-blur-sm">
-                    {pagination.totalCount} {pagination.totalCount === 1 ? "user" : "users"}
+                    {pagination.totalCount}{" "}
+                    {pagination.totalCount === 1 ? "user" : "users"}
                   </span>
                 </div>
               </div>
@@ -231,7 +244,9 @@ export default function Index({
               <div className="p-4 lg:p-5">
                 <div className="mb-4 text-center md:hidden">
                   <h1 className="text-xl font-bold text-foreground">Users</h1>
-                  <p className="text-sm text-muted-foreground">Browse and filter registered users</p>
+                  <p className="text-sm text-muted-foreground">
+                    Browse and filter registered users
+                  </p>
                 </div>
 
                 <div className="overflow-x-auto">
@@ -250,7 +265,9 @@ export default function Index({
                           <input
                             type="text"
                             value={filterUsername}
-                            onChange={(event) => setFilterUsername(event.target.value)}
+                            onChange={(event) =>
+                              setFilterUsername(event.target.value)
+                            }
                             aria-label="Filter users by username"
                             placeholder="Filter..."
                             className="w-full rounded-md border border-input bg-background px-2 py-1.5 text-xs text-foreground outline-none focus:border-ring focus:ring-1 focus:ring-ring"
@@ -260,7 +277,9 @@ export default function Index({
                           <input
                             type="text"
                             value={filterEmail}
-                            onChange={(event) => setFilterEmail(event.target.value)}
+                            onChange={(event) =>
+                              setFilterEmail(event.target.value)
+                            }
                             aria-label="Filter users by email"
                             placeholder="Filter..."
                             className="w-full rounded-md border border-input bg-background px-2 py-1.5 text-xs text-foreground outline-none focus:border-ring focus:ring-1 focus:ring-ring"
@@ -269,7 +288,9 @@ export default function Index({
                         <td className="px-4 py-2">
                           <select
                             value={filterStatus}
-                            onChange={(event) => setFilterStatus(event.target.value)}
+                            onChange={(event) =>
+                              setFilterStatus(event.target.value)
+                            }
                             aria-label="Filter users by status"
                             className="w-full rounded-md border border-input bg-background px-2 py-1.5 text-xs text-foreground outline-none focus:border-ring focus:ring-1 focus:ring-ring"
                           >
@@ -284,7 +305,10 @@ export default function Index({
 
                       {users.length === 0 && (
                         <tr>
-                          <td colSpan={4} className="px-4 py-10 text-center text-muted-foreground">
+                          <td
+                            colSpan={4}
+                            className="px-4 py-10 text-center text-muted-foreground"
+                          >
                             No results found.
                           </td>
                         </tr>
@@ -293,12 +317,15 @@ export default function Index({
                       {users.map((user) => {
                         const status = STATUS_BADGE[user.status] ?? {
                           label: "Unknown",
-                          className: "bg-muted text-muted-foreground border border-border",
+                          className:
+                            "bg-muted text-muted-foreground border border-border",
                         };
 
                         return (
                           <tr key={user.id} className="hover:bg-muted/30">
-                            <td className="px-4 py-3 font-medium text-foreground">{user.username}</td>
+                            <td className="px-4 py-3 font-medium text-foreground">
+                              {user.username}
+                            </td>
                             <td className="px-4 py-3">
                               <a
                                 href={`mailto:${user.email}`}
@@ -328,7 +355,8 @@ export default function Index({
 
                   {users.length > 0 && (
                     <div className="mt-2 text-right text-xs text-muted-foreground">
-                      Showing {showingFrom}-{showingTo} of {pagination.totalCount}{" "}
+                      Showing {showingFrom}-{showingTo} of{" "}
+                      {pagination.totalCount}{" "}
                       {pagination.totalCount === 1 ? "item" : "items"}.
                     </div>
                   )}

@@ -74,7 +74,8 @@ export default function Contact() {
         >
           <div className="flex flex-col gap-5 text-center">
             <p className="text-sm text-muted-foreground">
-              Your message has been delivered to the team. Want to send another note?
+              Your message has been delivered to the team. Want to send another
+              note?
             </p>
             <Link
               href="/site/contact"
@@ -183,7 +184,9 @@ export default function Contact() {
             />
             <button
               type="submit"
-              disabled={form.processing || !form.data.ContactForm.turnstileToken}
+              disabled={
+                form.processing || !form.data.ContactForm.turnstileToken
+              }
               className="btn-brand inline-flex h-[44px] items-center justify-center rounded-lg px-7 text-[0.92rem]"
             >
               Send message

@@ -56,7 +56,9 @@ export default function AuthShell({
                 <dl className="grid grid-cols-2 gap-x-4 gap-y-2.5 border-t border-white/40 pt-4 font-mono text-[0.62rem] uppercase tracking-[0.18em]">
                   {brandMeta.map((item) => (
                     <div key={item.label}>
-                      <dt className="font-medium text-white/90">{item.label}</dt>
+                      <dt className="font-medium text-white/90">
+                        {item.label}
+                      </dt>
                       <dd className="font-semibold text-white">{item.value}</dd>
                     </div>
                   ))}
@@ -73,7 +75,9 @@ export default function AuthShell({
           <div className="flex flex-col bg-card">
             <div className="flex flex-col p-6 lg:p-8">
               <header className="mb-4">
-                {eyebrow ? <span className="section-eyebrow">{eyebrow}</span> : null}
+                {eyebrow ? (
+                  <span className="section-eyebrow">{eyebrow}</span>
+                ) : null}
                 <h1
                   className={`font-display text-[1.7rem] font-medium leading-[1.05] tracking-[-0.015em] text-foreground ${
                     eyebrow ? "mt-2" : ""
@@ -82,7 +86,9 @@ export default function AuthShell({
                   {title}
                 </h1>
                 {subtitle ? (
-                  <p className="mt-1.5 text-[0.85rem] text-muted-foreground">{subtitle}</p>
+                  <p className="mt-1.5 text-[0.85rem] text-muted-foreground">
+                    {subtitle}
+                  </p>
                 ) : null}
               </header>
 

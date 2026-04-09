@@ -17,7 +17,9 @@ const desktopLinkClass = (active) =>
 const mobileLinkClass = (active) =>
   cn(
     "block rounded-md px-3 py-2 font-mono text-[0.72rem] uppercase tracking-[0.18em]",
-    active ? "bg-muted text-foreground" : "text-muted-foreground hover:text-foreground",
+    active
+      ? "bg-muted text-foreground"
+      : "text-muted-foreground hover:text-foreground",
   );
 
 /**
@@ -35,24 +37,44 @@ export default function Navbar() {
       <Link href="/" prefetch className={desktopLinkClass(isActive("/"))}>
         Home
       </Link>
-      <Link href="/site/about" prefetch className={desktopLinkClass(isActive("/site/about"))}>
+      <Link
+        href="/site/about"
+        prefetch
+        className={desktopLinkClass(isActive("/site/about"))}
+      >
         About
       </Link>
-      <Link href="/site/contact" prefetch className={desktopLinkClass(isActive("/site/contact"))}>
+      <Link
+        href="/site/contact"
+        prefetch
+        className={desktopLinkClass(isActive("/site/contact"))}
+      >
         Contact
       </Link>
       {props.auth.canViewUsers && (
-        <Link href="/user/index" prefetch className={desktopLinkClass(isActive("/user/index"))}>
+        <Link
+          href="/user/index"
+          prefetch
+          className={desktopLinkClass(isActive("/user/index"))}
+        >
           Users
         </Link>
       )}
       {props.auth.isGuest && (
-        <Link href="/user/signup" prefetch className={desktopLinkClass(isActive("/user/signup"))}>
+        <Link
+          href="/user/signup"
+          prefetch
+          className={desktopLinkClass(isActive("/user/signup"))}
+        >
           Signup
         </Link>
       )}
       {props.auth.isGuest && (
-        <Link href="/user/login" prefetch className={desktopLinkClass(isActive("/user/login"))}>
+        <Link
+          href="/user/login"
+          prefetch
+          className={desktopLinkClass(isActive("/user/login"))}
+        >
           Login
         </Link>
       )}
@@ -71,7 +93,11 @@ export default function Navbar() {
 
   const mobileLinks = (
     <>
-      <Link href="/" className={mobileLinkClass(isActive("/"))} onClick={() => setOpen(false)}>
+      <Link
+        href="/"
+        className={mobileLinkClass(isActive("/"))}
+        onClick={() => setOpen(false)}
+      >
         Home
       </Link>
       <Link
