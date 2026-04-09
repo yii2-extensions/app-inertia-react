@@ -274,4 +274,19 @@ final class SiteControllerTest extends \Codeception\Test\Unit
             "Expected 'actionIndex' to return an instance of Response.",
         );
     }
+
+    protected function tearDown(): void
+    {
+        Yii::$app->request->setBodyParams([]);
+        Yii::$app->controller = null;
+        Yii::$app->errorHandler->exception = null;
+
+        unset(
+            $_SERVER['REQUEST_URI'],
+            $_SERVER['SERVER_NAME'],
+            $_SERVER['REQUEST_METHOD'],
+        );
+
+        parent::tearDown();
+    }
 }

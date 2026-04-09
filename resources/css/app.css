@@ -347,6 +347,13 @@
   cursor: not-allowed;
 }
 
+.btn-cream:focus-visible,
+.btn-ghost-light:focus-visible,
+.btn-brand:focus-visible {
+  outline: 2px solid var(--color-ring);
+  outline-offset: 2px;
+}
+
 /* ===========================================================
   Sort headers (User/Index)
   =========================================================== */

@@ -4,7 +4,7 @@
 
 - [`PHP`](https://www.php.net/downloads) `8.3` or higher.
 - [`Composer`](https://getcomposer.org/download/) for dependency management.
-- [`Node.js`](https://nodejs.org/) `18` or higher with npm.
+- [`Node.js`](https://nodejs.org/) `22` or higher with npm.
 - [`Yii2`](https://github.com/yiisoft/yii2) `22.x`.
 
 ## Installation

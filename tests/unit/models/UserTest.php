@@ -304,7 +304,13 @@ final class UserTest extends \Codeception\Test\Unit
 
     public function testThrowNotSupportedExceptionWhenFindIdentityByAccessToken(): void
     {
-        $this->tester?->expectThrowable(
+        self::assertInstanceOf(
+            UnitTester::class,
+            $this->tester,
+            'Failed asserting that the tester instance is available.',
+        );
+
+        $this->tester->expectThrowable(
             NotSupportedException::class,
             static function (): void {
                 User::findIdentityByAccessToken('any-token');

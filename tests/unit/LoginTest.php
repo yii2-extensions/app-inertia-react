@@ -76,4 +76,16 @@ final class LoginTest extends \Codeception\Test\Unit
             'Failed asserting that login action returns a Response instance for guests.',
         );
     }
+
+    protected function tearDown(): void
+    {
+        Yii::$app->controller = null;
+
+        unset(
+            $_SERVER['REQUEST_URI'],
+            $_SERVER['SERVER_NAME'],
+        );
+
+        parent::tearDown();
+    }
 }

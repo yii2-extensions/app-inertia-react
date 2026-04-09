@@ -16,6 +16,8 @@ use Yii;
  */
 final class ContactFormValidateTurnstileTest extends \Codeception\Test\Unit
 {
+    private string $originalSecretKey = '';
+
     public function testValidateTurnstileSkipsWhenModelHasErrors(): void
     {
         $model = new ContactForm();
@@ -53,7 +55,6 @@ final class ContactFormValidateTurnstileTest extends \Codeception\Test\Unit
 
     public function testValidateTurnstileWithCloudflareFailKeys(): void
     {
-        $originalKey = Yii::$app->params['turnstile.secretKey'];
         Yii::$app->params['turnstile.secretKey'] = '2x0000000000000000000000000000000AA';
 
         $model = new ContactForm();
@@ -66,13 +67,10 @@ final class ContactFormValidateTurnstileTest extends \Codeception\Test\Unit
             ->true(
                 'Turnstile validation should fail with Cloudflare always-fail test key.',
             );
-
-        Yii::$app->params['turnstile.secretKey'] = $originalKey;
     }
 
     public function testValidateTurnstileWithCloudflareTestKeys(): void
     {
-        $originalKey = Yii::$app->params['turnstile.secretKey'];
         Yii::$app->params['turnstile.secretKey'] = '1x0000000000000000000000000000000AA';
 
         $model = Stub::construct(
@@ -89,13 +87,10 @@ final class ContactFormValidateTurnstileTest extends \Codeception\Test\Unit
             ->false(
                 'Turnstile validation should pass with Cloudflare always-pass test key.',
             );
-
-        Yii::$app->params['turnstile.secretKey'] = $originalKey;
     }
 
     public function testValidateTurnstileWithFailureResponse(): void
     {
-        $originalKey = Yii::$app->params['turnstile.secretKey'];
         Yii::$app->params['turnstile.secretKey'] = 'test-secret';
 
         $model = Stub::construct(
@@ -112,13 +107,10 @@ final class ContactFormValidateTurnstileTest extends \Codeception\Test\Unit
             ->true(
                 'Turnstile validation should fail when API returns success: false.',
             );
-
-        Yii::$app->params['turnstile.secretKey'] = $originalKey;
     }
 
     public function testValidateTurnstileWithInvalidJsonResponse(): void
     {
-        $originalKey = Yii::$app->params['turnstile.secretKey'];
         Yii::$app->params['turnstile.secretKey'] = 'test-secret';
 
         $model = Stub::construct(
@@ -135,13 +127,10 @@ final class ContactFormValidateTurnstileTest extends \Codeception\Test\Unit
             ->true(
                 'Turnstile validation should fail when API returns invalid JSON.',
             );
-
-        Yii::$app->params['turnstile.secretKey'] = $originalKey;
     }
 
     public function testValidateTurnstileWithNullResponse(): void
     {
-        $originalKey = Yii::$app->params['turnstile.secretKey'];
         Yii::$app->params['turnstile.secretKey'] = 'test-secret';
 
         $model = Stub::construct(
@@ -158,13 +147,10 @@ final class ContactFormValidateTurnstileTest extends \Codeception\Test\Unit
             ->true(
                 'Turnstile validation should fail when HTTP request returns null.',
             );
-
-        Yii::$app->params['turnstile.secretKey'] = $originalKey;
     }
 
     public function testValidateTurnstileWithSuccessResponse(): void
     {
-        $originalKey = Yii::$app->params['turnstile.secretKey'];
         Yii::$app->params['turnstile.secretKey'] = 'test-secret';
 
         $model = Stub::construct(
@@ -181,7 +167,19 @@ final class ContactFormValidateTurnstileTest extends \Codeception\Test\Unit
             ->false(
                 'Turnstile validation should pass when API returns success.',
             );
+    }
 
-        Yii::$app->params['turnstile.secretKey'] = $originalKey;
+    protected function setUp(): void
+    {
+        parent::setUp();
+
+        $this->originalSecretKey = Yii::$app->params['turnstile.secretKey'];
+    }
+
+    protected function tearDown(): void
+    {
+        Yii::$app->params['turnstile.secretKey'] = $this->originalSecretKey;
+
+        parent::tearDown();
     }
 }

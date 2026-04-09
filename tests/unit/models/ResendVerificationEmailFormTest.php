@@ -139,27 +139,33 @@ final class ResendVerificationEmailFormTest extends \Codeception\Test\Unit
                 'Failed asserting that verification email is resent successfully.',
             );
 
-        $this->tester?->seeEmailIsSent();
+        self::assertInstanceOf(
+            UnitTester::class,
+            $this->tester,
+            'Failed asserting that the tester instance is available.',
+        );
 
-        /** @phpstan-var MessageInterface|null $mail */
-        $mail = $this->tester?->grabLastSentEmail();
+        $this->tester->seeEmailIsSent();
+
+        /** @phpstan-var MessageInterface $mail */
+        $mail = $this->tester->grabLastSentEmail();
 
         verify($mail)
             ->instanceOf(
                 MessageInterface::class,
                 'Failed asserting that a verification email was captured.',
             );
-        verify($mail?->getTo())
+        verify($mail->getTo())
             ->arrayHasKey(
                 'test.test@example.com',
                 'Failed asserting that email is sent to the inactive user.',
             );
-        verify($mail?->getFrom())
+        verify($mail->getFrom())
             ->arrayHasKey(
                 $supportEmail,
                 "Failed asserting that email is sent 'from' the support address.",
             );
-        verify($mail?->getSubject())
+        verify($mail->getSubject())
             ->equals(
                 'Account registration at ' . Yii::$app->name,
                 "Failed asserting that email 'subject' matches the registration template.",

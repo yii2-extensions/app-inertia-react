@@ -50,7 +50,13 @@ final class VerifyEmailFormTest extends \Codeception\Test\Unit
         /** @phpstan-var string $token */
         $token = $user->verification_token ?? '';
 
-        $this->tester?->expectThrowable(
+        self::assertInstanceOf(
+            UnitTester::class,
+            $this->tester,
+            'Failed asserting that the tester instance is available.',
+        );
+
+        $this->tester->expectThrowable(
             InvalidArgumentException::class,
             static function () use ($token): void {
                 new VerifyEmailForm($token);
@@ -60,13 +66,19 @@ final class VerifyEmailFormTest extends \Codeception\Test\Unit
 
     public function testThrowInvalidArgumentExceptionWhenTokenIsEmptyOrInvalid(): void
     {
-        $this->tester?->expectThrowable(
+        self::assertInstanceOf(
+            UnitTester::class,
+            $this->tester,
+            'Failed asserting that the tester instance is available.',
+        );
+
+        $this->tester->expectThrowable(
             InvalidArgumentException::class,
             static function (): void {
                 new VerifyEmailForm('');
             },
         );
-        $this->tester?->expectThrowable(
+        $this->tester->expectThrowable(
             InvalidArgumentException::class,
             static function (): void {
                 new VerifyEmailForm('notexistingtoken_1391882543');

@@ -94,9 +94,11 @@ final class PasswordResetRequestFormTest extends \Codeception\Test\Unit
             "Failed asserting that fixture user 'okirlin' exists.",
         );
 
-        // Set expired token so the token-regeneration block is entered and a transaction is started.
-        // Save succeeds (no EVENT_BEFORE_UPDATE blocker), so $transaction is non-null and active
-        // when the mailer throws — covering rollBack() inside the second catch block.
+        /**
+         * Set expired token so the `token-regeneration` block is entered and a transaction is started. Save succeeds
+         * (no `EVENT_BEFORE_UPDATE` blocker), so `$transaction` is non-null and active when the mailer throws covering
+         * `rollBack()` inside the second catch block.
+         */
         $user->password_reset_token = 'expiredtoken_1000000000';
 
         self::assertTrue(
@@ -136,7 +138,7 @@ final class PasswordResetRequestFormTest extends \Codeception\Test\Unit
             "Failed asserting that fixture user 'okirlin' exists.",
         );
 
-        // Set expired token so the token-regeneration block (`$user->save()`) is entered.
+        // set expired token so the token-regeneration block (`$user->save()`) is entered.
         $user->password_reset_token = 'expiredtoken_1000000000';
 
         self::assertTrue(
@@ -320,20 +322,26 @@ final class PasswordResetRequestFormTest extends \Codeception\Test\Unit
                 "Failed asserting that user has a 'password reset token' after sending.",
             );
 
-        /** @phpstan-var MessageInterface|null $emailMessage */
-        $emailMessage = $this->tester?->grabLastSentEmail();
+        self::assertInstanceOf(
+            UnitTester::class,
+            $this->tester,
+            'Failed asserting that the tester instance is available.',
+        );
+
+        /** @phpstan-var MessageInterface $emailMessage */
+        $emailMessage = $this->tester->grabLastSentEmail();
 
         verify($emailMessage)
             ->instanceOf(
                 MessageInterface::class,
                 'Failed asserting that a reset email was captured.',
             );
-        verify($emailMessage?->getTo())
+        verify($emailMessage->getTo())
             ->arrayHasKey(
                 $model->email,
                 'Failed asserting that email is sent to the requested address.',
             );
-        verify($emailMessage?->getFrom())
+        verify($emailMessage->getFrom())
             ->arrayHasKey(
                 $supportEmail,
                 'Failed asserting that email is sent from the support address.',

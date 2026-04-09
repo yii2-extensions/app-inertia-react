@@ -56,7 +56,13 @@ final class SignupFormTest extends \Codeception\Test\Unit
                 'Failed asserting that signup returns a truthy value on success.',
             );
 
-        $user = $this->tester?->grabRecord(
+        self::assertInstanceOf(
+            UnitTester::class,
+            $this->tester,
+            'Failed asserting that the tester instance is available.',
+        );
+
+        $user = $this->tester->grabRecord(
             User::class,
             [
                 'username' => 'some_username',
@@ -79,27 +85,33 @@ final class SignupFormTest extends \Codeception\Test\Unit
             "Failed asserting that the persisted user verification 'token' is not empty.",
         );
 
-        $this->tester?->seeEmailIsSent();
+        self::assertInstanceOf(
+            UnitTester::class,
+            $this->tester,
+            'Failed asserting that the tester instance is available.',
+        );
 
-        /** @phpstan-var MessageInterface|null $mail */
-        $mail = $this->tester?->grabLastSentEmail();
+        $this->tester->seeEmailIsSent();
+
+        /** @phpstan-var MessageInterface $mail */
+        $mail = $this->tester->grabLastSentEmail();
 
         verify($mail)
             ->instanceOf(
                 MessageInterface::class,
                 'Failed asserting that a verification email was sent.',
             );
-        verify($mail?->getTo())
+        verify($mail->getTo())
             ->arrayHasKey(
                 'some_email@example.com',
                 'Failed asserting that email is sent to the registered address.',
             );
-        verify($mail?->getFrom())
+        verify($mail->getFrom())
             ->arrayHasKey(
                 $supportEmail,
                 'Failed asserting that email is sent from the support address.',
             );
-        verify($mail?->getSubject())
+        verify($mail->getSubject())
             ->equals(
                 'Account registration at ' . Yii::$app->name,
                 'Failed asserting that email subject matches the registration template.',

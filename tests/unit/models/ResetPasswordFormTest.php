@@ -101,13 +101,19 @@ final class ResetPasswordFormTest extends \Codeception\Test\Unit
 
     public function testThrowInvalidArgumentExceptionWhenTokenIsEmptyOrInvalid(): void
     {
-        $this->tester?->expectThrowable(
+        self::assertInstanceOf(
+            UnitTester::class,
+            $this->tester,
+            'Failed asserting that the tester instance is available.',
+        );
+
+        $this->tester->expectThrowable(
             InvalidArgumentException::class,
             static function (): void {
                 new ResetPasswordForm('');
             },
         );
-        $this->tester?->expectThrowable(
+        $this->tester->expectThrowable(
             InvalidArgumentException::class,
             static function (): void {
                 new ResetPasswordForm('notexistingtoken_1391882543');
