@@ -57,7 +57,11 @@ final class ContactFormValidateTurnstileTest extends \Codeception\Test\Unit
     {
         Yii::$app->params['turnstile.secretKey'] = '2x0000000000000000000000000000000AA';
 
-        $model = new ContactForm();
+        $model = Stub::construct(
+            ContactForm::class,
+            [],
+            ['fetchTurnstileResponse' => '{"success": false}'],
+        );
 
         $model->turnstileToken = 'test-token';
 

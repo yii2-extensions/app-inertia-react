@@ -119,6 +119,20 @@ final class ResendVerificationEmailFormTest extends \Codeception\Test\Unit
 
     public function testSuccessfullyResend(): void
     {
+        $userBefore = User::findOne(['username' => 'test.test']);
+
+        self::assertInstanceOf(
+            User::class,
+            $userBefore,
+            "Failed asserting that fixture user 'test.test' exists before resend.",
+        );
+        self::assertNotNull(
+            $userBefore->verification_token,
+            "Failed asserting that fixture user 'test.test' has an initial verification token.",
+        );
+
+        $oldToken = $userBefore->verification_token;
+
         $model = new ResendVerificationEmailForm();
 
         $model->attributes = ['email' => 'test.test@example.com'];
@@ -181,6 +195,11 @@ final class ResendVerificationEmailFormTest extends \Codeception\Test\Unit
         self::assertNotNull(
             $user->verification_token,
             "Failed asserting that fixture user 'test.test' has a verification token.",
+        );
+        self::assertNotSame(
+            $oldToken,
+            $user->verification_token,
+            'Failed asserting that resend regenerates the verification token.',
         );
 
         /** @phpstan-var \yii\symfonymailer\Message $mail */

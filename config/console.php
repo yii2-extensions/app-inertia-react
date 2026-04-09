@@ -11,7 +11,7 @@ $params = require __DIR__ . '/params.php';
 $db = require __DIR__ . '/db.php';
 
 $config = [
-    'id' => 'app-inertia-vue-console',
+    'id' => 'app-inertia-react-console',
     'aliases' => [
         '@app/migrations' => dirname(__DIR__) . '/src/migrations',
         '@bower' => '@vendor/bower-asset',

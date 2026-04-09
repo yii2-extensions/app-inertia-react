@@ -10,7 +10,7 @@ require dirname(__DIR__) . '/vendor/autoload.php';
 // Run migrations on the test database.
 $app = new yii\console\Application(
     [
-        'id' => 'app-inertia-vue-test-migrate',
+        'id' => 'app-inertia-react-test-migrate',
         'basePath' => dirname(__DIR__),
         'aliases' => ['@app/migrations' => dirname(__DIR__) . '/src/migrations'],
         'components' => ['db' => require dirname(__DIR__) . '/config/test_db.php'],

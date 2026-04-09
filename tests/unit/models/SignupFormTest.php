@@ -52,8 +52,8 @@ final class SignupFormTest extends \Codeception\Test\Unit
         $user = $model->signup(Yii::$app->mailer, $supportEmail, Yii::$app->name);
 
         verify($user)
-            ->notEmpty(
-                'Failed asserting that signup returns a truthy value on success.',
+            ->true(
+                "Failed asserting that signup returns 'true' on success.",
             );
 
         self::assertInstanceOf(

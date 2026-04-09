@@ -11,7 +11,7 @@ use yii\symfonymailer\Mailer;
 use yii\web\{Application, Request, UrlManager};
 
 return [
-    'id' => 'app-inertia-vue-phpstan',
+    'id' => 'app-inertia-react-phpstan',
     'phpstan' => [
         'application_type' => Application::class,
     ],
