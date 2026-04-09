@@ -135,6 +135,7 @@ export default function Contact() {
           <IconField
             id="contact-phone"
             label="Phone"
+            type="tel"
             icon={Phone}
             placeholder="(999) 999-9999"
             autoComplete="tel"
@@ -164,6 +165,10 @@ export default function Contact() {
               id="contact-body"
               value={form.data.ContactForm.body}
               onChange={(event) => setField("body", event.target.value)}
+              aria-invalid={Boolean(fieldError("body"))}
+              aria-describedby={
+                fieldError("body") ? "contact-body-error" : undefined
+              }
               placeholder="Your message..."
               className={cn(
                 "h-[80px] w-full rounded-lg border bg-background px-3.5 py-2 text-[0.92rem] text-foreground placeholder:text-muted-foreground/60 transition-all focus-visible:border-primary focus-visible:outline-none focus-visible:ring-4 focus-visible:ring-primary/15",
@@ -172,7 +177,7 @@ export default function Contact() {
                   : "border-input",
               )}
             />
-            <FormError message={fieldError("body")} />
+            <FormError id="contact-body-error" message={fieldError("body")} />
           </div>
 
           <div className="flex flex-wrap items-center gap-3">
