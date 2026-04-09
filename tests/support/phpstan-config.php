@@ -5,7 +5,7 @@ declare(strict_types=1);
 use app\models\User;
 use yii\caching\FileCache;
 use yii\inertia\Manager;
-use yii\inertia\vue\Vite;
+use yii\inertia\Vite;
 use yii\log\FileTarget;
 use yii\symfonymailer\Mailer;
 use yii\web\{Application, Request, UrlManager};
@@ -28,7 +28,7 @@ return [
         'inertia' => [
             'class' => Manager::class,
         ],
-        'inertiaVue' => [
+        'inertiaReact' => [
             'class' => Vite::class,
         ],
         'log' => [
