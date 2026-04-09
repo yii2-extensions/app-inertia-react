@@ -244,10 +244,16 @@
 
 .editorial-card:hover {
     transform: translateY(-3px);
-    border-color: color-mix(in srgb, var(--color-primary) 50%, var(--color-border));
+    border-color: color-mix(
+        in srgb,
+        var(--color-primary) 50%,
+        var(--color-border)
+    );
     box-shadow:
-        0 12px 28px -12px color-mix(in srgb, var(--color-primary) 35%, transparent),
-        0 4px 8px -4px color-mix(in srgb, var(--color-foreground) 8%, transparent);
+        0 12px 28px -12px
+            color-mix(in srgb, var(--color-primary) 35%, transparent),
+        0 4px 8px -4px
+            color-mix(in srgb, var(--color-foreground) 8%, transparent);
 }
 
 .editorial-card:hover::after {
