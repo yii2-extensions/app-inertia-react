@@ -12,6 +12,8 @@ export function FormError({ message, className, ...props }) {
 
   return (
     <p
+      role="alert"
+      aria-live="polite"
       className={cn("mt-1 text-sm font-medium text-destructive", className)}
       {...props}
     >
