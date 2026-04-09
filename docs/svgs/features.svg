@@ -59,7 +59,7 @@
                     <p class="alert-content">PHPStan Level Max • StyleCI • Super-Linter integration</p>
                 </div>
                 <div class="alert-box">
-                    <p class="alert-title"><strong>PHP 8.1+</strong></p>
+                    <p class="alert-title"><strong>PHP 8.3+</strong></p>
                     <p class="alert-content">Modern PHP features • Type safety • Performance optimizations</p>
                 </div>
                 <div class="alert-box">

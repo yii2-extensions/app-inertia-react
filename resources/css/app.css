@@ -1,0 +1,415 @@
+/**
+ * Application stylesheet for the Yii2 + Inertia.js + React 19 reference app.
+ *
+ * Bundles Tailwind CSS v4 (via `@import "tailwindcss"`), the `tw-animate-css` plugin, and the shadcn/ui design tokens
+ * used throughout the UI. Declares the light and dark themes, the editorial typography stack (Fraunces, Geist,
+ * JetBrains Mono), the brand gradient mesh, and the neutralized `-webkit-autofill` overrides required by Chrome-based
+ * browsers.
+ *
+ * Imported by `resources/js/app.jsx` so Vite includes it in the production bundle served through the Inertia root view
+ * emitted by `yii\inertia\react\Bootstrap`.
+ *
+ * @see https://tailwindcss.com/docs/v4-beta
+ * @see https://ui.shadcn.com/docs/theming
+ */
+@import "tailwindcss";
+@import "tw-animate-css";
+
+@custom-variant dark (&:where(.dark, .dark *));
+
+@theme {
+    --font-sans:
+        "Geist", ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto,
+        "Helvetica Neue", Arial, sans-serif;
+    --font-display: "Fraunces", "Times New Roman", Georgia, serif;
+    --font-mono: "JetBrains Mono", ui-monospace, SFMono-Regular, monospace;
+
+    --radius: 0.625rem;
+
+    /* === Light theme === */
+    --color-background: hsl(45 33% 97%);
+    --color-foreground: hsl(210 35% 9%);
+    --color-card: hsl(0 0% 100%);
+    --color-card-foreground: hsl(210 35% 9%);
+    --color-popover: hsl(0 0% 100%);
+    --color-popover-foreground: hsl(210 35% 9%);
+    --color-primary: hsl(196 60% 42%);
+    --color-primary-foreground: hsl(0 0% 100%);
+    --color-secondary: hsl(210 30% 95%);
+    --color-secondary-foreground: hsl(210 35% 12%);
+    --color-muted: hsl(45 30% 95%);
+    --color-muted-foreground: hsl(210 12% 42%);
+    --color-accent: hsl(28 91% 56%);
+    --color-accent-foreground: hsl(0 0% 100%);
+    --color-destructive: hsl(0 72% 51%);
+    --color-destructive-foreground: hsl(0 0% 100%);
+    --color-success: hsl(142 71% 41%);
+    --color-success-foreground: hsl(0 0% 100%);
+    --color-border: hsl(210 18% 88%);
+    --color-input: hsl(210 18% 88%);
+    --color-ring: hsl(196 60% 42%);
+
+    /* Yii brand palette (used inside gradients/decoration) */
+    --color-brand-cyan: hsl(196 65% 53%);
+    --color-brand-teal: hsl(192 51% 48%);
+    --color-brand-green: hsl(82 60% 51%);
+    --color-brand-orange: hsl(28 91% 56%);
+    --color-brand-ink: hsl(210 35% 9%);
+}
+
+@layer base {
+    .dark {
+        --color-background: hsl(220 30% 6%);
+        --color-foreground: hsl(45 28% 96%);
+        --color-card: hsl(220 30% 9%);
+        --color-card-foreground: hsl(45 28% 96%);
+        --color-popover: hsl(220 30% 9%);
+        --color-popover-foreground: hsl(45 28% 96%);
+        --color-primary: hsl(196 75% 60%);
+        --color-primary-foreground: hsl(220 35% 8%);
+        --color-secondary: hsl(220 20% 14%);
+        --color-secondary-foreground: hsl(45 28% 96%);
+        --color-muted: hsl(220 20% 12%);
+        --color-muted-foreground: hsl(220 10% 65%);
+        --color-accent: hsl(28 91% 60%);
+        --color-accent-foreground: hsl(220 30% 8%);
+        --color-destructive: hsl(0 70% 55%);
+        --color-destructive-foreground: hsl(45 28% 96%);
+        --color-success: hsl(142 71% 50%);
+        --color-success-foreground: hsl(220 30% 8%);
+        --color-border: hsl(220 18% 18%);
+        --color-input: hsl(220 18% 18%);
+        --color-ring: hsl(196 75% 60%);
+    }
+
+    * {
+        border-color: var(--color-border);
+    }
+
+    html,
+    body {
+        height: 100%;
+    }
+
+    body {
+        background-color: var(--color-background);
+        color: var(--color-foreground);
+        font-family: var(--font-sans);
+        -webkit-font-smoothing: antialiased;
+        font-feature-settings: "ss01", "cv11";
+    }
+
+    /* Neutralize Chrome / Edge autofill so it matches the current theme */
+    input:-webkit-autofill,
+    input:-webkit-autofill:hover,
+    input:-webkit-autofill:focus,
+    input:-webkit-autofill:active,
+    textarea:-webkit-autofill,
+    textarea:-webkit-autofill:hover,
+    textarea:-webkit-autofill:focus,
+    textarea:-webkit-autofill:active,
+    select:-webkit-autofill,
+    select:-webkit-autofill:hover,
+    select:-webkit-autofill:focus,
+    select:-webkit-autofill:active {
+        -webkit-box-shadow: 0 0 0 1000px var(--color-background) inset !important;
+        -webkit-text-fill-color: var(--color-foreground) !important;
+        caret-color: var(--color-foreground);
+        transition:
+            background-color 99999s ease-in-out 0s,
+            color 99999s ease-in-out 0s;
+    }
+}
+
+/* ===========================================================
+   Brand gradient mesh — used by hero banner + auth brand panel
+   =========================================================== */
+.brand-mesh {
+    background:
+        radial-gradient(at 18% 24%, hsl(196 78% 56%) 0%, transparent 55%),
+        radial-gradient(at 82% 12%, hsl(82 65% 55%) 0%, transparent 50%),
+        radial-gradient(at 70% 88%, hsl(28 91% 60%) 0%, transparent 55%),
+        radial-gradient(at 14% 86%, hsl(192 60% 38%) 0%, transparent 55%),
+        linear-gradient(135deg, hsl(196 60% 42%) 0%, hsl(210 70% 18%) 100%);
+    position: relative;
+    overflow: hidden;
+}
+
+.brand-mesh::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background-image:
+        linear-gradient(hsl(0 0% 100% / 0.04) 1px, transparent 1px),
+        linear-gradient(90deg, hsl(0 0% 100% / 0.04) 1px, transparent 1px);
+    background-size: 28px 28px;
+    pointer-events: none;
+}
+
+/* ===========================================================
+   Hero banner (used on Site/Index)
+   =========================================================== */
+.hero-banner {
+    position: relative;
+    overflow: hidden;
+    background:
+        radial-gradient(at 22% 30%, hsl(196 80% 60%) 0%, transparent 50%),
+        radial-gradient(at 78% 18%, hsl(82 65% 55%) 0%, transparent 45%),
+        radial-gradient(at 88% 80%, hsl(28 91% 62%) 0%, transparent 50%),
+        radial-gradient(at 10% 90%, hsl(192 70% 35%) 0%, transparent 55%),
+        linear-gradient(135deg, hsl(196 60% 38%) 0%, hsl(210 80% 12%) 100%);
+}
+
+.hero-banner::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background-image:
+        linear-gradient(hsl(0 0% 100% / 0.05) 1px, transparent 1px),
+        linear-gradient(90deg, hsl(0 0% 100% / 0.05) 1px, transparent 1px);
+    background-size: 32px 32px;
+    pointer-events: none;
+}
+
+/* ===========================================================
+   Decorative section heading rule — uppercase tracking label
+   =========================================================== */
+.section-eyebrow {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.65rem;
+    font-family: var(--font-mono);
+    font-size: 0.7rem;
+    font-weight: 500;
+    text-transform: uppercase;
+    letter-spacing: 0.18em;
+    color: var(--color-muted-foreground);
+}
+
+.section-eyebrow::before {
+    content: "";
+    width: 1.75rem;
+    height: 1px;
+    background-color: currentColor;
+    opacity: 0.55;
+}
+
+/* ===========================================================
+   "or" divider — restored from Vue, refined for shadcn
+   =========================================================== */
+.auth-divider {
+    display: flex;
+    align-items: center;
+    gap: 0.85rem;
+    font-family: var(--font-mono);
+    font-size: 0.7rem;
+    text-transform: uppercase;
+    letter-spacing: 0.22em;
+    color: var(--color-muted-foreground);
+}
+
+.auth-divider::before,
+.auth-divider::after {
+    content: "";
+    flex: 1;
+    height: 1px;
+    background-color: var(--color-border);
+}
+
+/* ===========================================================
+   Editorial card (extension cards on home)
+   =========================================================== */
+.editorial-card {
+    position: relative;
+    transition:
+        transform 0.25s cubic-bezier(0.2, 0.8, 0.2, 1),
+        box-shadow 0.25s cubic-bezier(0.2, 0.8, 0.2, 1),
+        border-color 0.25s ease;
+}
+
+.editorial-card::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    border-radius: inherit;
+    pointer-events: none;
+    background: linear-gradient(
+        135deg,
+        color-mix(in srgb, var(--color-primary) 8%, transparent) 0%,
+        transparent 50%
+    );
+    opacity: 0;
+    transition: opacity 0.25s ease;
+}
+
+.editorial-card:hover {
+    transform: translateY(-3px);
+    border-color: color-mix(in srgb, var(--color-primary) 50%, var(--color-border));
+    box-shadow:
+        0 12px 28px -12px color-mix(in srgb, var(--color-primary) 35%, transparent),
+        0 4px 8px -4px color-mix(in srgb, var(--color-foreground) 8%, transparent);
+}
+
+.editorial-card:hover::after {
+    opacity: 1;
+}
+
+/* Numbered marker (01, 02, ...) */
+.editorial-card .card-num {
+    font-family: var(--font-mono);
+    font-size: 0.7rem;
+    letter-spacing: 0.18em;
+    color: var(--color-muted-foreground);
+    transition: color 0.25s ease;
+}
+
+.editorial-card:hover .card-num {
+    color: var(--color-primary);
+}
+
+/* ===========================================================
+   Cream solid button on dark hero — explicit, no conflict
+   =========================================================== */
+.btn-cream {
+    background-color: hsl(45 33% 97%);
+    color: hsl(210 35% 9%);
+    border: 1px solid hsl(45 33% 97%);
+    transition:
+        background-color 0.2s,
+        transform 0.1s;
+}
+
+.btn-cream:hover {
+    background-color: hsl(28 91% 56%);
+    border-color: hsl(28 91% 56%);
+    color: hsl(0 0% 100%);
+}
+
+.btn-cream:active {
+    transform: translateY(1px);
+}
+
+.btn-ghost-light {
+    background-color: transparent;
+    color: hsl(0 0% 100%);
+    border: 1px solid color-mix(in srgb, hsl(0 0% 100%) 50%, transparent);
+    transition:
+        background-color 0.2s,
+        border-color 0.2s;
+}
+
+.btn-ghost-light:hover {
+    background-color: color-mix(in srgb, hsl(0 0% 100%) 14%, transparent);
+    border-color: hsl(0 0% 100%);
+    color: hsl(0 0% 100%);
+}
+
+/* ===========================================================
+   Primary "brand" button using the cyan→teal gradient
+   =========================================================== */
+.btn-brand {
+    background-image: linear-gradient(
+        135deg,
+        hsl(196 65% 53%) 0%,
+        hsl(192 60% 42%) 100%
+    );
+    color: hsl(0 0% 100%);
+    border: none;
+    font-weight: 600;
+    letter-spacing: 0.01em;
+    box-shadow:
+        0 1px 0 inset hsl(0 0% 100% / 0.18),
+        0 8px 24px -10px hsl(196 60% 35% / 0.55);
+    transition:
+        transform 0.12s,
+        box-shadow 0.2s,
+        filter 0.2s;
+}
+
+.btn-brand:hover:not(:disabled) {
+    filter: brightness(1.06);
+    transform: translateY(-1px);
+    box-shadow:
+        0 1px 0 inset hsl(0 0% 100% / 0.22),
+        0 12px 28px -10px hsl(196 60% 35% / 0.65);
+}
+
+.btn-brand:active:not(:disabled) {
+    transform: translateY(0);
+}
+
+.btn-brand:disabled {
+    opacity: 0.55;
+    cursor: not-allowed;
+}
+
+/* ===========================================================
+   Sort headers (User/Index)
+   =========================================================== */
+button.asc::after,
+button.desc::after {
+    content: "";
+    display: inline-block;
+    width: 0;
+    height: 0;
+    border: solid 5px transparent;
+    margin: 4px 4px 2px;
+}
+
+button.asc::after {
+    border-bottom: solid 7px currentColor;
+    border-top-width: 0;
+}
+
+button.desc::after {
+    border-top: solid 7px currentColor;
+    border-bottom-width: 0;
+}
+
+/* ===========================================================
+   View Transitions API
+   =========================================================== */
+::view-transition-old(root) {
+    animation: fade-out 150ms ease-in;
+}
+
+::view-transition-new(root) {
+    animation: fade-in 150ms ease-out;
+}
+
+@keyframes fade-out {
+    from {
+        opacity: 1;
+    }
+    to {
+        opacity: 0;
+    }
+}
+
+@keyframes fade-in {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .editorial-card,
+    .btn-brand,
+    .btn-cream {
+        transition: none;
+    }
+
+    .editorial-card:hover,
+    .btn-brand:hover,
+    .btn-cream:hover {
+        transform: none;
+    }
+
+    ::view-transition-old(root),
+    ::view-transition-new(root) {
+        animation: none;
+    }
+}
