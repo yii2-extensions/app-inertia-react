@@ -76,7 +76,7 @@
     "scripts": {
         "check-dependencies": "./vendor/bin/composer-require-checker check",
         "ecs": "./vendor/bin/ecs --fix",
-       "post-create-project-cmd": [
+        "post-create-project-cmd": [
             "yii\\composer\\Installer::postCreateProject"
         ],
         "post-install-cmd": [
