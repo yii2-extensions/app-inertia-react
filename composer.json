@@ -65,13 +65,18 @@
         }
     },
     "config": {
-        "sort-packages": true,
         "allow-plugins": {
             "codeception/c3": true,
             "php-forge/foxy": true,
             "phpstan/extension-installer": true,
             "yiisoft/yii2-composer": true
-        }
+        },
+        "foxy": {
+            "enable-packages": {
+                "yiisoft/yii2": false
+            }
+        },
+        "sort-packages": true
     },
     "scripts": {
         "check-dependencies": "./vendor/bin/composer-require-checker check",
