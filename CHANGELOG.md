@@ -11,3 +11,4 @@ The format is based on Keep a Changelog, and this project adheres to Semantic Ve
 - chore: migrate package to `yii2-extensions` organization and raise minimum PHP requirement to `8.3`.
 - fix: add `postInstall` command to `post-create-project` scripts in `composer.json`.
 - docs: enhance quick start instructions in `README.md`.
+- chore: skip `yiisoft/yii2` in foxy via `config.foxy.enable-packages` to avoid pulling legacy `jquery`, `jquery-pjax`, `inputmask`, `punycode`, and `yii2-pjax` assets into the merged `package.json`.
