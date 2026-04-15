@@ -33,7 +33,7 @@
         "php-forge/coding-standard": "^0.1",
         "phpstan/extension-installer": "^1.4",
         "phpstan/phpstan-strict-rules": "^2.0.3",
-        "yii2-extensions/phpstan": "^0.4"
+        "yii2-extensions/phpstan": "^0.5"
     },
     "autoload": {
         "psr-4": {
@@ -77,8 +77,7 @@
         "check-dependencies": "./vendor/bin/composer-require-checker check",
         "ecs": "./vendor/bin/ecs --fix",
        "post-create-project-cmd": [
-            "yii\\composer\\Installer::postCreateProject",
-            "yii\\composer\\Installer::postInstall"
+            "yii\\composer\\Installer::postCreateProject"
         ],
         "post-install-cmd": [
             "yii\\composer\\Installer::postInstall"

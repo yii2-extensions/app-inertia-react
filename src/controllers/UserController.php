@@ -44,7 +44,7 @@ final class UserController extends Controller
     {
         $searchModel = new UserSearch();
 
-        /** @phpstan-var array<string, mixed> $queryParams */
+        /** @var array<string, mixed> $queryParams */
         $queryParams = Yii::$app->request->queryParams;
 
         $dataProvider = $searchModel->search($queryParams);
@@ -97,7 +97,7 @@ final class UserController extends Controller
     {
         $model = new LoginForm();
 
-        /** @phpstan-var array<string, mixed> $post */
+        /** @var array<string, mixed> $post */
         $post = $this->request->post();
 
         if ($model->load($post) && $model->login()) {
@@ -237,7 +237,7 @@ final class UserController extends Controller
             throw new BadRequestHttpException($e->getMessage());
         }
 
-        /** @phpstan-var array<string, mixed> $post */
+        /** @var array<string, mixed> $post */
         $post = $this->request->post();
 
         if ($model->load($post)) {
