@@ -11,23 +11,30 @@
 <!-- markdownlint-enable MD041 -->
 
 <p align="center">
-    <a href="https://github.com/yii2-framework/app-inertia-react/actions/workflows/build.yml" target="_blank">
-        <img src="https://img.shields.io/github/actions/workflow/status/yii2-framework/app-inertia-react/build.yml?style=for-the-badge&logo=github&label=Build" alt="Build">
+    <a href="https://github.com/yii2-extensions/app-inertia-react/actions/workflows/build.yml" target="_blank">
+        <img src="https://img.shields.io/github/actions/workflow/status/yii2-extensions/app-inertia-react/build.yml?style=for-the-badge&logo=github&label=Build" alt="Build">
     </a>
-    <a href="https://codecov.io/gh/yii2-framework/app-inertia-react" target="_blank">
-        <img src="https://img.shields.io/codecov/c/github/yii2-framework/app-inertia-react.svg?style=for-the-badge&logo=codecov&logoColor=white&label=Codecov" alt="Codecov">
+    <a href="https://codecov.io/gh/yii2-extensions/app-inertia-react" target="_blank">
+        <img src="https://img.shields.io/codecov/c/github/yii2-extensions/app-inertia-react.svg?style=for-the-badge&logo=codecov&logoColor=white&label=Codecov" alt="Codecov">
     </a>
-    <a href="https://github.com/yii2-framework/app-inertia-react/actions/workflows/static.yml" target="_blank">
-        <img src="https://img.shields.io/github/actions/workflow/status/yii2-framework/app-inertia-react/static.yml?style=for-the-badge&logo=github&label=PHPStan" alt="PHPStan">
+    <a href="https://github.com/yii2-extensions/app-inertia-react/actions/workflows/static.yml" target="_blank">
+        <img src="https://img.shields.io/github/actions/workflow/status/yii2-extensions/app-inertia-react/static.yml?style=for-the-badge&logo=github&label=PHPStan" alt="PHPStan">
     </a>
 </p>
 
 <p align="center">
-    <strong>Skeleton <a href="https://github.com/yii2-framework/yii2">Yii2</a> application with Inertia.js + React 19 integration</strong><br>
+    <strong>Skeleton <a href="https://github.com/yiisoft/yii2/tree/22.0">Yii2</a> application with Inertia.js + React 19 integration</strong><br>
     <em>Server-driven SPA with Tailwind CSS v4, shadcn/ui, dark mode, Cloudflare Turnstile, and Codeception tests</em>
 </p>
 
 Use the **"Use this template"** button on GitHub to create your own repository from this template.
+
+## Features
+
+<picture>
+    <source media="(max-width: 767px)" srcset="./docs/svgs/features-mobile.svg">
+    <img src="./docs/svgs/features.svg" alt="Feature Overview" style="width: 100%;">
+</picture>
 
 <picture>
     <source media="(prefers-color-scheme: dark)" srcset="docs/images/home-dark.png">
@@ -41,22 +48,15 @@ Use the **"Use this template"** button on GitHub to create your own repository f
     <img src="docs/images/users-light.png" alt="User Directory with shadcn/ui Table">
 </picture>
 
-## Features
-
-<picture>
-    <source media="(min-width: 768px)" srcset="./docs/svgs/features.svg">
-    <img src="./docs/svgs/features-mobile.svg" alt="Feature Overview" style="width: 100%;">
-</picture>
-
 ## Quick start
 
 ```bash
-composer create-project --prefer-dist --stability=dev yii2-framework/app-inertia-react app-inertia-react
+composer create-project --prefer-dist yii2-extensions/app-inertia-react:^0.1@dev app-react
 ```
 
 ## Docker
 
-[![Apache](https://img.shields.io/github/actions/workflow/status/yii2-framework/app-inertia-react/docker.yml?style=for-the-badge&logo=apache&label=Apache)](https://github.com/yii2-framework/app-inertia-react/actions/workflows/docker.yml)
+[![Apache](https://img.shields.io/github/actions/workflow/status/yii2-extensions/app-inertia-react/docker.yml?style=for-the-badge&logo=apache&label=Apache)](https://github.com/yii2-extensions/app-inertia-react/actions/workflows/docker.yml)
 
 ```bash
 docker compose up -d
@@ -72,13 +72,15 @@ docker compose up -d
 ## Package information
 
 [![PHP](https://img.shields.io/badge/%3E%3D8.3-777BB4.svg?style=for-the-badge&logo=php&logoColor=white)](https://www.php.net/releases/8.3/en.php)
-[![Latest Stable Version](https://img.shields.io/packagist/v/yii2-framework/app-inertia-react.svg?style=for-the-badge&logo=packagist&logoColor=white&label=Stable)](https://packagist.org/packages/yii2-framework/app-inertia-react)
+[![Yii 22.0.x](https://img.shields.io/badge/22.0.x-0073AA.svg?style=for-the-badge&logo=yii&logoColor=white)](https://github.com/yiisoft/yii2/tree/22.0)
+[![Latest Stable Version](https://img.shields.io/packagist/v/yii2-extensions/app-inertia-react.svg?style=for-the-badge&logo=packagist&logoColor=white&label=Stable)](https://packagist.org/packages/yii2-extensions/app-inertia-react)
+[![Total Downloads](https://img.shields.io/packagist/dt/yii2-extensions/app-inertia-react.svg?style=for-the-badge&logo=composer&logoColor=white&label=Downloads)](https://packagist.org/packages/yii2-extensions/app-inertia-react)
 
 ## Quality code
 
-[![PHPStan Level Max](https://img.shields.io/badge/PHPStan-Level%20Max-4F5D95.svg?style=for-the-badge&logo=php&logoColor=white)](https://github.com/yii2-framework/app-inertia-react/actions/workflows/static.yml)
-[![Super-Linter](https://img.shields.io/github/actions/workflow/status/yii2-framework/app-inertia-react/linter.yml?style=for-the-badge&label=Super-Linter&logo=github)](https://github.com/yii2-framework/app-inertia-react/actions/workflows/linter.yml)
-[![StyleCI](https://img.shields.io/badge/StyleCI-Passed-44CC11.svg?style=for-the-badge&logo=styleci&logoColor=white)](https://github.styleci.io/repos/1203882767?branch=main)
+[![PHPStan Level Max](https://img.shields.io/badge/PHPStan-Level%20Max-4F5D95.svg?style=for-the-badge&logo=github&logoColor=white)](https://github.com/yii2-extensions/app-inertia-react/actions/workflows/static.yml)
+[![Super-Linter](https://img.shields.io/github/actions/workflow/status/yii2-extensions/app-inertia-react/linter.yml?style=for-the-badge&label=Super-Linter&logo=github)](https://github.com/yii2-extensions/app-inertia-react/actions/workflows/linter.yml)
+[![StyleCI](https://img.shields.io/badge/StyleCI-Passed-44CC11.svg?style=for-the-badge&logo=github&logoColor=white)](https://github.styleci.io/repos/1203882767?branch=main)
 
 ## Our social networks
 

@@ -1,11 +1,16 @@
 # Testing
 
-This package contains unit, functional, and acceptance test suites powered by
-[Codeception PHP Testing Framework](https://codeception.com/).
+This template provides a consistent set of [Composer](https://getcomposer.org/) scripts for local validation.
 
-Tests are located in the `tests` directory. They are developed with [Codeception PHP Testing Framework](https://codeception.com/).
+Tool references:
 
-By default, there are 3 test suites:
+- [Codeception](https://codeception.com/) for functional, unit, and acceptance tests.
+- [Composer Require Checker](https://github.com/maglnet/ComposerRequireChecker) for dependency definition checks.
+- [Easy Coding Standard (ECS)](https://github.com/easy-coding-standard/easy-coding-standard) for coding standards.
+- [PHPStan](https://phpstan.org/) for static analysis.
+- [Rector](https://github.com/rectorphp/rector) for automated refactoring.
+
+Tests live under `tests/` and are organized into three suites:
 
 - `unit`
 - `functional`

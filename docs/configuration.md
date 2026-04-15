@@ -1,5 +1,15 @@
 # Configuration reference
 
+## Overview
+
+This template centralizes runtime configuration in `config/params.php` (application parameters), `config/web.php` and
+`config/console.php` (component wiring), `config/db.php` (database DSN), and environment variables consumed by
+`public/index.php`. The sections below describe each surface and how to override its defaults.
+
+`config/web.php` also contains `request.cookieValidationKey`. It is generated during `composer install`
+via `yii\composer\Installer::postInstall`. If Composer scripts are disabled, set a strong key manually
+before serving requests.
+
 ## Environment variables
 
 Defined in `public/index.php`:
