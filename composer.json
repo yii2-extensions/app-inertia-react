@@ -1,5 +1,5 @@
 {
-    "name": "yii2-framework/app-inertia-react",
+    "name": "yii2-extensions/app-inertia-react",
     "type": "project",
     "description": "Yii2 application template with Inertia.js and React 19",
     "keywords": [
@@ -15,19 +15,19 @@
     "require": {
         "php": ">=8.3",
         "php-forge/foxy": "^0.2",
-        "yii2-framework/inertia": "^0.1@dev",
-        "yii2-framework/inertia-react": "^0.1@dev",
-        "yii2-framework/yii2": "^0.1@dev",
+        "yii2-extensions/inertia": "^0.1",
+        "yii2-extensions/inertia-react": "^0.1",
+        "yiisoft/yii2": "^22.0",
         "yiisoft/yii2-symfonymailer": "^4.0"
     },
     "require-dev": {
-        "codeception/c3": "^2.8",
+        "codeception/c3": "^2.9",
         "codeception/codeception": "^5.3",
         "codeception/lib-innerbrowser": "^4.1",
         "codeception/module-asserts": "^3.3",
         "codeception/module-filesystem": "^3.0",
         "codeception/module-phpbrowser": "^4.0",
-        "codeception/module-yii2": "^1.1",
+        "codeception/module-yii2": "^2.0",
         "codeception/verify": "^3.4",
         "maglnet/composer-require-checker": "^4.17",
         "php-forge/coding-standard": "^0.1",
@@ -48,6 +48,20 @@
     "extra": {
         "branch-alias": {
             "dev-main": "0.1.x-dev"
+        },
+        "yii\\composer\\Installer::postCreateProject": {
+            "setPermission": [
+                {
+                    "runtime": "0775",
+                    "public/assets": "0775",
+                    "yii": "0755"
+                }
+            ]
+        },
+        "yii\\composer\\Installer::postInstall": {
+            "generateCookieValidationKey": [
+                "config/web.php"
+            ]
         }
     },
     "config": {
@@ -62,6 +76,13 @@
     "scripts": {
         "check-dependencies": "./vendor/bin/composer-require-checker check",
         "ecs": "./vendor/bin/ecs --fix",
+       "post-create-project-cmd": [
+            "yii\\composer\\Installer::postCreateProject",
+            "yii\\composer\\Installer::postInstall"
+        ],
+        "post-install-cmd": [
+            "yii\\composer\\Installer::postInstall"
+        ],
         "rector": "./vendor/bin/rector process",
         "static": "./vendor/bin/phpstan --memory-limit=-1",
         "tests": "vendor/bin/codecept run --env php-builtin --coverage-xml"
