@@ -51,7 +51,20 @@ Use the **"Use this template"** button on GitHub to create your own repository f
 ## Quick start
 
 ```bash
+# create a new Yii2 application using the Inertia.js + React 19 template
 composer create-project --prefer-dist yii2-extensions/app-inertia-react:^0.1@dev app-react
+
+# navigate to the application directory
+cd app-react
+
+# run database migrations
+./yii migrate/up
+
+# install JavaScript dependencies and build assets
+npm run build
+
+# start the development server
+./yii serve
 ```
 
 ## Docker
