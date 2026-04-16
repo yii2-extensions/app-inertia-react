@@ -10,4 +10,9 @@ return $ecsConfigBuilder->withPaths(
         __DIR__ . '/src',
         __DIR__ . '/tests',
     ],
+)
+->withSkip(
+    [
+        __DIR__ . '/tests/support',
+    ],
 );
