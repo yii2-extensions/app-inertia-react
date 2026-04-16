@@ -10,14 +10,12 @@
         "shadcn"
     ],
     "license": "BSD-3-Clause",
-    "minimum-stability": "dev",
-    "prefer-stable": true,
     "require": {
         "php": ">=8.3",
         "php-forge/foxy": "^0.2",
         "yii2-extensions/inertia": "^0.1",
         "yii2-extensions/inertia-react": "^0.1",
-        "yiisoft/yii2": "^22.0",
+        "yiisoft/yii2": "^22.0@dev",
         "yiisoft/yii2-symfonymailer": "^4.0"
     },
     "require-dev": {
@@ -29,11 +27,11 @@
         "codeception/module-phpbrowser": "^4.0",
         "codeception/module-yii2": "^2.0",
         "codeception/verify": "^3.4",
-        "maglnet/composer-require-checker": "^4.17",
+        "maglnet/composer-require-checker": "^4.1",
         "php-forge/coding-standard": "^0.1",
         "phpstan/extension-installer": "^1.4",
         "phpstan/phpstan-strict-rules": "^2.0.3",
-        "yii2-extensions/phpstan": "^0.5"
+        "yii2-extensions/phpstan": "^0.4"
     },
     "autoload": {
         "psr-4": {
