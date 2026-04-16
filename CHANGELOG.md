@@ -12,3 +12,4 @@ The format is based on Keep a Changelog, and this project adheres to Semantic Ve
 - fix: add `postInstall` command to `post-create-project` scripts in `composer.json`.
 - docs: enhance quick start instructions in `README.md`.
 - chore: skip `yiisoft/yii2` in foxy via `config.foxy.enable-packages` to avoid pulling legacy `jquery`, `jquery-pjax`, `inputmask`, `punycode`, and `yii2-pjax` assets into the merged `package.json`.
+- docs: document the Vite HMR development workflow (`npm run dev` + `YII_ENV=dev ./yii serve`) in `README.md`.
