@@ -24,7 +24,7 @@ final class PasswordResetRequestFormTest extends \Codeception\Test\Unit
     protected UnitTester|null $tester = null;
 
     /**
-     * @phpstan-return array{user: array{class: string, dataFile: string}}
+     * @return array{user: array{class: string, dataFile: string}}
      */
     public function _fixtures(): array
     {
@@ -328,7 +328,7 @@ final class PasswordResetRequestFormTest extends \Codeception\Test\Unit
             'Failed asserting that the tester instance is available.',
         );
 
-        /** @phpstan-var MessageInterface $emailMessage */
+        /** @var MessageInterface $emailMessage */
         $emailMessage = $this->tester->grabLastSentEmail();
 
         verify($emailMessage)
@@ -347,13 +347,13 @@ final class PasswordResetRequestFormTest extends \Codeception\Test\Unit
                 'Failed asserting that email is sent from the support address.',
             );
 
-        /** @phpstan-var Message $emailMessage */
+        /** @var Message $emailMessage */
         $body = $emailMessage->getSymfonyEmail()->getHtmlBody() . $emailMessage->getSymfonyEmail()->getTextBody();
 
         verify($user->password_reset_token)
             ->notNull('Failed asserting that user has a password reset token.');
 
-        /** @phpstan-var string $token */
+        /** @var string $token */
         $token = $user->password_reset_token;
 
         verify($body)

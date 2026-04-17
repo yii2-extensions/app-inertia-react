@@ -45,7 +45,7 @@ final class SiteController extends Controller
     {
         $model = new ContactForm();
 
-        /** @phpstan-var array<string, mixed> $post */
+        /** @var array<string, mixed> $post */
         $post = $this->request->post();
 
         if ($model->load($post)) {

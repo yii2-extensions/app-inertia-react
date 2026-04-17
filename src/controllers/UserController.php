@@ -136,7 +136,7 @@ final class UserController extends Controller
     {
         $model = new PasswordResetRequestForm();
 
-        /** @phpstan-var array<string, mixed> $post */
+        /** @var array<string, mixed> $post */
         $post = $this->request->post();
 
         $params = Yii::$app->params;
@@ -176,7 +176,7 @@ final class UserController extends Controller
     {
         $model = new ResendVerificationEmailForm();
 
-        /** @phpstan-var array<string, mixed> $post */
+        /** @var array<string, mixed> $post */
         $post = $this->request->post();
 
         $params = Yii::$app->params;
@@ -269,7 +269,7 @@ final class UserController extends Controller
     {
         $model = new SignupForm();
 
-        /** @phpstan-var array<string, mixed> $post */
+        /** @var array<string, mixed> $post */
         $post = $this->request->post();
 
         if ($model->load($post)) {
