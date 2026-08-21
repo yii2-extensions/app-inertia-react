@@ -9,9 +9,6 @@ use yii\base\{InvalidArgumentException, Model};
 
 /**
  * Handles password reset with a valid token.
- *
- * @author Wilmer Arambula <terabytesoftw@gmail.com>
- * @since 0.1
  */
 class ResetPasswordForm extends Model
 {

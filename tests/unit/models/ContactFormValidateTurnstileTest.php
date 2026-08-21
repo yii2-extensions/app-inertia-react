@@ -10,9 +10,6 @@ use Yii;
 
 /**
  * Unit tests for {@see ContactForm} Turnstile CAPTCHA validation.
- *
- * @author Wilmer Arambula <terabytesoftw@gmail.com>
- * @since 0.1
  */
 final class ContactFormValidateTurnstileTest extends \Codeception\Test\Unit
 {
