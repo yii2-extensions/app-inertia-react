@@ -23,6 +23,8 @@ $this->beginPage();
     <meta charset="<?= Html::encode(Yii::$app->charset) ?>">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title data-inertia><?= Html::encode(Yii::$app->name) ?></title>
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg">
+    <link rel="icon" href="/favicon.ico" sizes="any">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght,SOFT@0,9..144,300..900,0..100;1,9..144,300..900,0..100&family=Geist:wght@300..800&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">

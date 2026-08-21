@@ -18,3 +18,4 @@ The format is based on Keep a Changelog, and this project adheres to Semantic Ve
 - fix: cache negative lookup in `LoginForm::getUser()` via a `userLoaded` flag to avoid a second `User::findByUsername()` DB query on repeated calls.
 - fix(security): harden `request-password-reset` and `resend-verification-email` flows against email enumeration by returning a generic success response regardless of account state.
 - fix: send verification email outside the DB transaction in `ResendVerificationEmailForm::sendEmail()` to avoid holding locks during mailer I/O; the verification token is preserved if the mailer fails after commit.
+- feat: add favicon support (SVG and ICO) and enable Yii debug mode via the `debug` module in `web.php`.

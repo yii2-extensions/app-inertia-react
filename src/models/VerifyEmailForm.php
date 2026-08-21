@@ -8,9 +8,6 @@ use yii\base\{InvalidArgumentException, Model};
 
 /**
  * Handles email verification after user registration.
- *
- * @author Wilmer Arambula <terabytesoftw@gmail.com>
- * @since 0.1
  */
 class VerifyEmailForm extends Model
 {

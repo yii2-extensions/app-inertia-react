@@ -12,9 +12,6 @@ use yii\base\InvalidArgumentException;
 
 /**
  * Unit tests for {@see \app\models\ResetPasswordForm} model.
- *
- * @author Wilmer Arambula <terabytesoftw@gmail.com>
- * @since 0.1
  */
 final class ResetPasswordFormTest extends \Codeception\Test\Unit
 {
