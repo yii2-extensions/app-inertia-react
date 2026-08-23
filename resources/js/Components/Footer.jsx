@@ -13,12 +13,12 @@ export default function Footer() {
                     >
                         <img
                             src="/images/yii_logo_light.svg"
-                            alt="Yii Framework"
+                            alt=""
                             className="dark:hidden"
                         />
                         <img
                             src="/images/yii_logo_dark.svg"
-                            alt="Yii Framework"
+                            alt=""
                             className="hidden dark:block"
                         />
                     </a>
@@ -28,7 +28,7 @@ export default function Footer() {
                     </p>
                 </div>
 
-                <div className="site-footer__links" aria-label="Project links">
+                <nav className="site-footer__links" aria-label="Project links">
                     <a
                         href="https://github.com/yiisoft/yii2/tree/22.0"
                         rel="noopener noreferrer"
@@ -50,7 +50,7 @@ export default function Footer() {
                     >
                         Application source
                     </a>
-                </div>
+                </nav>
 
                 <div className="site-footer__status">
                     <span>

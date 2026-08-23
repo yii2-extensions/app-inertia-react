@@ -16,6 +16,7 @@ use yii\symfonymailer\Mailer;
 
 $params = require __DIR__ . '/params.php';
 $db = require __DIR__ . '/db.php';
+$debugAllowedIPs = ['127.0.0.1', '::1'];
 
 $config = [
     'id' => 'app-inertia-react',
@@ -44,6 +45,11 @@ $config = [
             'rootView' => '@app/resources/views/app.php',
             'shared' => [
                 'appName' => static fn(): string => Yii::$app->name,
+                'canAccessDebug' => static fn(): bool => YII_DEBUG && in_array(
+                    Yii::$app->request->getUserIP(),
+                    $debugAllowedIPs,
+                    true,
+                ),
                 'auth' => static function (): array {
                     $user = Yii::$app->user;
                     $identity = $user->identity;
@@ -134,7 +140,7 @@ if (YII_DEBUG) {
     $config['modules'] = [
         'debug' => [
             'class' => \yii\debug\Module::class,
-            'allowedIPs' => ['127.0.0.1', '::1'],
+            'allowedIPs' => $debugAllowedIPs,
         ],
     ];
 }

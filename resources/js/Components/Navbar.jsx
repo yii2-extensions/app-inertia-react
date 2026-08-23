@@ -1,6 +1,7 @@
 import { Link, usePage } from "@inertiajs/react";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
+import { useTheme } from "../hooks/useTheme";
 import ThemeToggle from "./ThemeToggle";
 
 const landingLinks = [
@@ -12,6 +13,7 @@ const landingLinks = [
 export default function Navbar() {
     const { props, url } = usePage();
     const [open, setOpen] = useState(false);
+    const { theme, toggleTheme } = useTheme();
 
     const isActive = (href) =>
         url === href ||
@@ -19,6 +21,24 @@ export default function Navbar() {
         url.startsWith(`${href}/`);
 
     const closeMenu = () => setOpen(false);
+
+    useEffect(() => {
+        if (!open) {
+            return undefined;
+        }
+
+        const handleKeyDown = (event) => {
+            if (event.key === "Escape") {
+                setOpen(false);
+            }
+        };
+
+        document.addEventListener("keydown", handleKeyDown);
+
+        return () => {
+            document.removeEventListener("keydown", handleKeyDown);
+        };
+    }, [open]);
 
     return (
         <header className="site-header">
@@ -32,12 +52,12 @@ export default function Navbar() {
                     >
                         <img
                             src="/images/yii_logo_light.svg"
-                            alt="Yii Framework"
+                            alt=""
                             className="site-brand__logo dark:hidden"
                         />
                         <img
                             src="/images/yii_logo_dark.svg"
-                            alt="Yii Framework"
+                            alt=""
                             className="site-brand__logo hidden dark:block"
                         />
                         <span>22.0 preview</span>
@@ -45,13 +65,13 @@ export default function Navbar() {
 
                     <div className="site-nav__desktop">
                         {landingLinks.map((item) => (
-                            <a
+                            <Link
                                 key={item.href}
                                 href={item.href}
                                 className="site-nav__link"
                             >
                                 {item.label}
-                            </a>
+                            </Link>
                         ))}
                         <a
                             href="https://github.com/yiisoft/yii2/blob/22.0/framework/UPGRADE-22.md"
@@ -62,7 +82,10 @@ export default function Navbar() {
                             Upgrade guide
                         </a>
 
-                        <ThemeToggle />
+                        <ThemeToggle
+                            theme={theme}
+                            onToggle={toggleTheme}
+                        />
 
                         {props.auth.isGuest && (
                             <Link
@@ -109,12 +132,17 @@ export default function Navbar() {
                     </div>
 
                     <div className="site-nav__mobile-actions">
-                        <ThemeToggle />
+                        <ThemeToggle
+                            theme={theme}
+                            onToggle={toggleTheme}
+                        />
                         <button
                             type="button"
                             className="site-nav__menu-button"
                             aria-expanded={open}
-                            aria-controls="mobile-navigation"
+                            aria-controls={
+                                open ? "mobile-navigation" : undefined
+                            }
                             aria-label={
                                 open ? "Close navigation" : "Open navigation"
                             }
@@ -137,13 +165,13 @@ export default function Navbar() {
                 {open && (
                     <div id="mobile-navigation" className="site-nav__mobile">
                         {landingLinks.map((item) => (
-                            <a
+                            <Link
                                 key={item.href}
                                 href={item.href}
                                 onClick={closeMenu}
                             >
                                 {item.label}
-                            </a>
+                            </Link>
                         ))}
                         <a
                             href="https://github.com/yiisoft/yii2/blob/22.0/framework/UPGRADE-22.md"

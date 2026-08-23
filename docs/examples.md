@@ -81,12 +81,13 @@ export default function Example() {
   const page = usePage();
   const user = page.props.auth?.user;
   const appName = page.props.appName;
+  const canAccessDebug = page.props.canAccessDebug;
 
   return null;
 }
 ```
 
-Available shared props: `appName`, `auth`, `flash`.
+Available shared props: `appName`, `auth`, `canAccessDebug`, `flash`.
 
 ## Using shadcn/ui components
 

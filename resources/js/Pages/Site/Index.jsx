@@ -153,15 +153,19 @@ export default function Index({ protocolFeed, runtime }) {
             label: accountDemo.label,
             inertia: true,
         },
-        {
-            eyebrow: "Diagnostics",
-            title: "Yii debug panel",
-            description:
-                "Inspect requests, queries, logs, configuration, and timings with the integrated development module.",
-            href: "/debug",
-            label: "Inspect the runtime",
-            inertia: false,
-        },
+        ...(props.canAccessDebug
+            ? [
+                  {
+                      eyebrow: "Diagnostics",
+                      title: "Yii debug panel",
+                      description:
+                          "Inspect requests, queries, logs, configuration, and timings with the integrated development module.",
+                      href: "/debug/index",
+                      label: "Inspect the runtime",
+                      inertia: false,
+                  },
+              ]
+            : []),
         {
             eyebrow: "Source",
             title: "Start from the template",
@@ -627,7 +631,7 @@ export default function Index({ protocolFeed, runtime }) {
                                 <div>
                                     <dt>Prop</dt>
                                     <dd>
-                                        <code>scrollProps</code>
+                                        <code>protocolFeed</code>
                                     </dd>
                                 </div>
                                 <div>
@@ -641,7 +645,7 @@ export default function Index({ protocolFeed, runtime }) {
 
                         <div className="protocol-scroll">
                             <div className="protocol-scroll__bar">
-                                <div>
+                                <div id="protocol-trace-label">
                                     <span aria-hidden="true" />
                                     Protocol trace
                                 </div>
@@ -655,6 +659,8 @@ export default function Index({ protocolFeed, runtime }) {
                                 className="protocol-scroll__viewport"
                                 scroll-region=""
                                 tabIndex={0}
+                                role="region"
+                                aria-labelledby="protocol-trace-label"
                             >
                                 <InfiniteScroll
                                     data="protocolFeed"
@@ -730,7 +736,11 @@ export default function Index({ protocolFeed, runtime }) {
                         </p>
                     </div>
 
-                    <div className="demo-grid">
+                    <div
+                        className={`demo-grid${
+                            demos.length === 2 ? " demo-grid--compact" : ""
+                        }`}
+                    >
                         {demos.map((demo) => (
                             <article key={demo.title} className="demo-card">
                                 <span>{demo.eyebrow}</span>
