@@ -80,13 +80,14 @@ import { usePage } from "@inertiajs/react";
 export default function Example() {
   const page = usePage();
   const user = page.props.auth?.user;
-  const turnstileKey = page.props.turnstileSiteKey;
+  const appName = page.props.appName;
+  const canAccessDebug = page.props.canAccessDebug;
 
   return null;
 }
 ```
 
-Available shared props: `auth`, `flash`, `turnstileSiteKey`.
+Available shared props: `appName`, `auth`, `canAccessDebug`, `flash`.
 
 ## Using shadcn/ui components
 

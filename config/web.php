@@ -3,9 +3,12 @@
 declare(strict_types=1);
 
 use app\models\User;
+use app\vite\ReactRefreshPreambleProvider;
+use PHPForge\Vite\Configuration\{DevelopmentConfiguration, ProductionConfiguration};
+use PHPForge\Vite\Vite;
 use yii\caching\FileCache;
-use yii\inertia\{Manager, Vite};
-use yii\inertia\react\Bootstrap;
+use yii\inertia\Bootstrap;
+use yii\inertia\Manager;
 use yii\log\FileTarget;
 use yii\mail\MailerInterface;
 use yii\rbac\PhpManager;
@@ -13,6 +16,7 @@ use yii\symfonymailer\Mailer;
 
 $params = require __DIR__ . '/params.php';
 $db = require __DIR__ . '/db.php';
+$debugAllowedIPs = ['127.0.0.1', '::1'];
 
 $config = [
     'id' => 'app-inertia-react',
@@ -41,6 +45,11 @@ $config = [
             'rootView' => '@app/resources/views/app.php',
             'shared' => [
                 'appName' => static fn(): string => Yii::$app->name,
+                'canAccessDebug' => static fn(): bool => YII_DEBUG && in_array(
+                    Yii::$app->request->getUserIP(),
+                    $debugAllowedIPs,
+                    true,
+                ),
                 'auth' => static function (): array {
                     $user = Yii::$app->user;
                     $identity = $user->identity;
@@ -57,9 +66,6 @@ $config = [
                             : null,
                     ];
                 },
-                'turnstileSiteKey' => static function (): string {
-                    return Yii::$app->params['turnstile.siteKey'];
-                },
             ],
             'version' => static function (): string {
                 $path = Yii::getAlias('@webroot/build/.vite/manifest.json');
@@ -69,14 +75,18 @@ $config = [
         ],
         'inertiaReact' => [
             'class' => Vite::class,
-            'baseUrl' => '@web/build',
-            'devMode' => YII_ENV === 'dev',
-            'devServerUrl' => 'http://localhost:5173',
-            'entrypoints' => [
-                'resources/js/app.jsx',
+            '__construct()' => [
+                'configuration' => YII_ENV === 'dev'
+                    ? new DevelopmentConfiguration(
+                        devServerUrl: 'http://localhost:5173',
+                        inlineModuleProviders: [new ReactRefreshPreambleProvider()],
+                    )
+                    : new ProductionConfiguration(
+                        manifestPath: dirname(__DIR__) . '/public/build/.vite/manifest.json',
+                        assetBaseUrl: '/build',
+                    ),
+                'entrypoints' => ['resources/js/app.jsx'],
             ],
-            'manifestPath' => '@webroot/build/.vite/manifest.json',
-            'preambleProvider' => Bootstrap::reactRefreshPreambleProvider(),
         ],
         'log' => [
             'targets' => [
@@ -130,7 +140,7 @@ if (YII_DEBUG) {
     $config['modules'] = [
         'debug' => [
             'class' => \yii\debug\Module::class,
-            'allowedIPs' => ['127.0.0.1', '::1'],
+            'allowedIPs' => $debugAllowedIPs,
         ],
     ];
 }

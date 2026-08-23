@@ -34,11 +34,7 @@ final class LoginTest extends \Codeception\Test\Unit
         $_SERVER['REQUEST_URI'] = '/site/about';
         $_SERVER['SERVER_NAME'] = 'localhost';
 
-        $controller = new SiteController(
-            'site',
-            Yii::$app,
-            Yii::$app->mailer,
-        );
+        $controller = new SiteController('site', Yii::$app);
 
         Yii::$app->controller = $controller;
 

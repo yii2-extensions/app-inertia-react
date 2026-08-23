@@ -20,8 +20,7 @@ export default function Error({
           </h2>
           <p className="mb-6 leading-relaxed text-muted-foreground">
             The above error occurred while the Web server was processing your
-            request. Please contact us if you think this is a server error.
-            Thank you.
+            request. Return to the homepage and try the request again.
           </p>
           <Button asChild>
             <Link href="/">Go to Homepage</Link>

@@ -3,9 +3,11 @@
 declare(strict_types=1);
 
 use app\models\User;
+use app\vite\ReactRefreshPreambleProvider;
+use PHPForge\Vite\Configuration\DevelopmentConfiguration;
+use PHPForge\Vite\Vite;
 use yii\caching\FileCache;
 use yii\inertia\Manager;
-use yii\inertia\Vite;
 use yii\log\FileTarget;
 use yii\symfonymailer\Mailer;
 use yii\web\{Application, Request, UrlManager};
@@ -30,6 +32,13 @@ return [
         ],
         'inertiaReact' => [
             'class' => Vite::class,
+            '__construct()' => [
+                'configuration' => new DevelopmentConfiguration(
+                    devServerUrl: 'http://localhost:5173',
+                    inlineModuleProviders: [new ReactRefreshPreambleProvider()],
+                ),
+                'entrypoints' => ['resources/js/app.jsx'],
+            ],
         ],
         'log' => [
             'targets' => [

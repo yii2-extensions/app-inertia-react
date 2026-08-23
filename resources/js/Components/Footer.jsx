@@ -1,36 +1,64 @@
-import { usePage } from "@inertiajs/react";
+const year = new Date().getFullYear();
 
 export default function Footer() {
-  const { props } = usePage();
-  const year = new Date().getFullYear();
+    return (
+        <footer className="site-footer">
+            <div className="site-footer__inner">
+                <div className="site-footer__brand">
+                    <a
+                        href="https://www.yiiframework.com/"
+                        rel="noopener noreferrer"
+                        target="_blank"
+                        aria-label="Yii Framework website"
+                    >
+                        <img
+                            src="/images/yii_logo_light.svg"
+                            alt=""
+                            className="dark:hidden"
+                        />
+                        <img
+                            src="/images/yii_logo_dark.svg"
+                            alt=""
+                            className="hidden dark:block"
+                        />
+                    </a>
+                    <p>
+                        A working Yii 22 + Inertia + React reference for the
+                        framework&apos;s next development line.
+                    </p>
+                </div>
 
-  return (
-    <footer className="mt-auto border-t border-border bg-muted/30 py-4">
-      <div className="mx-auto flex max-w-7xl flex-col items-center justify-between gap-2 px-4 text-sm text-muted-foreground sm:px-6 md:flex-row lg:px-8">
-        <span>
-          &copy; {props.appName} {year}
-        </span>
-        <a
-          href="https://www.yiiframework.com/"
-          rel="external"
-          aria-label="Powered by Yii Framework"
-          className="no-underline transition-colors hover:text-foreground"
-        >
-          Powered by{" "}
-          <img
-            src="/images/yii3_full_for_light.svg"
-            alt=""
-            aria-hidden="true"
-            className="inline-block h-7 align-text-bottom dark:hidden"
-          />
-          <img
-            src="/images/yii3_full_for_dark.svg"
-            alt=""
-            aria-hidden="true"
-            className="hidden h-7 align-text-bottom dark:inline-block"
-          />
-        </a>
-      </div>
-    </footer>
-  );
+                <nav className="site-footer__links" aria-label="Project links">
+                    <a
+                        href="https://github.com/yiisoft/yii2/tree/22.0"
+                        rel="noopener noreferrer"
+                        target="_blank"
+                    >
+                        Branch 22.0
+                    </a>
+                    <a
+                        href="https://github.com/yiisoft/yii2/blob/22.0/framework/UPGRADE-22.md"
+                        rel="noopener noreferrer"
+                        target="_blank"
+                    >
+                        Upgrade guide
+                    </a>
+                    <a
+                        href="https://github.com/yii2-extensions/app-inertia-react"
+                        rel="noopener noreferrer"
+                        target="_blank"
+                    >
+                        Application source
+                    </a>
+                </nav>
+
+                <div className="site-footer__status">
+                    <span>
+                        <i aria-hidden="true" /> Development preview
+                    </span>
+                    <small>&copy; {year} Terabytesoftw · BSD-3-Clause</small>
+                </div>
+            </div>
+        </footer>
+    );
 }
