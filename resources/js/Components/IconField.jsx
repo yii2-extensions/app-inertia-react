@@ -5,7 +5,7 @@ import { cn } from "@/lib/utils";
 /**
  * Form field with a leading icon, label, and inline error message.
  *
- * Designed for the auth and contact forms so every field renders identically without copy-pasting markup.
+ * Keeps authentication fields consistent without duplicating labels, icons, and validation feedback.
  */
 export default function IconField({
   id,

@@ -4,9 +4,12 @@ declare(strict_types=1);
 
 use app\models\User;
 use app\tests\support\MailerBootstrap;
+use app\vite\ReactRefreshPreambleProvider;
+use PHPForge\Vite\Configuration\DevelopmentConfiguration;
+use PHPForge\Vite\Vite;
 use yii\caching\FileCache;
-use yii\inertia\{Manager, Vite};
-use yii\inertia\react\Bootstrap;
+use yii\inertia\Bootstrap;
+use yii\inertia\Manager;
 use yii\rbac\PhpManager;
 use yii\symfonymailer\{Mailer, Message};
 use yii\web\JsonParser;
@@ -60,21 +63,17 @@ return [
                             : null,
                     ];
                 },
-                'turnstileSiteKey' => static function (): string {
-                    return Yii::$app->params['turnstile.siteKey'];
-                },
             ],
         ],
         'inertiaReact' => [
             'class' => Vite::class,
-            'baseUrl' => '@web/build',
-            'devMode' => true,
-            'devServerUrl' => 'http://localhost:5173',
-            'entrypoints' => [
-                'resources/js/app.jsx',
+            '__construct()' => [
+                'configuration' => new DevelopmentConfiguration(
+                    devServerUrl: 'http://localhost:5173',
+                    inlineModuleProviders: [new ReactRefreshPreambleProvider()],
+                ),
+                'entrypoints' => ['resources/js/app.jsx'],
             ],
-            'manifestPath' => '@webroot/build/.vite/manifest.json',
-            'preambleProvider' => Bootstrap::reactRefreshPreambleProvider(),
         ],
         'mailer' => [
             'class' => Mailer::class,
@@ -103,5 +102,5 @@ return [
     ],
     'controllerNamespace' => 'app\\controllers',
     'language' => 'en-US',
-    'params' => [...$params, 'turnstile.secretKey' => ''],
+    'params' => $params,
 ];
