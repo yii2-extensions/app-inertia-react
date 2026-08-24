@@ -20,3 +20,4 @@ The format is based on Keep a Changelog, and this project adheres to Semantic Ve
 - fix: send verification email outside the DB transaction in `ResendVerificationEmailForm::sendEmail()` to avoid holding locks during mailer I/O; the verification token is preserved if the mailer fails after commit.
 - feat: add favicon support (SVG and ICO) and enable Yii debug mode via the `debug` module in `web.php`.
 - feat: add a responsive Yii 22.0 preview landing page with live Inertia request proof, actionable application flows, Yii-branded light/dark themes, social preview metadata, and framework-agnostic Vite/Inertia integrations.
+- chore: update composer dependencies to remove `@dev` versions for stability.
