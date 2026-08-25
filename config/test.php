@@ -69,7 +69,7 @@ return [
         'inertiaReact' => [
             'class' => Vite::class,
             '__construct()' => [
-                'configuration' => new DevelopmentConfiguration(
+                'configuration' => DevelopmentConfiguration::create(
                     devServerUrl: 'http://localhost:5173',
                     inlineModuleProviders: [new ReactRefreshPreambleProvider()],
                 ),

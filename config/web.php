@@ -77,11 +77,11 @@ $config = [
             'class' => Vite::class,
             '__construct()' => [
                 'configuration' => YII_ENV === 'dev'
-                    ? new DevelopmentConfiguration(
+                    ? DevelopmentConfiguration::create(
                         devServerUrl: 'http://localhost:5173',
                         inlineModuleProviders: [new ReactRefreshPreambleProvider()],
                     )
-                    : new ProductionConfiguration(
+                    : ProductionConfiguration::create(
                         manifestPath: dirname(__DIR__) . '/public/build/.vite/manifest.json',
                         assetBaseUrl: '/build',
                     ),

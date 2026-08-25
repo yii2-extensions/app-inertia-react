@@ -63,7 +63,7 @@ $this->beginPage();
     </script>
     <?= Html::csrfMetaTags() ?>
     <?php $this->head(); ?>
-    <?= (new HtmlRenderer())->render($vite->resolve()) ?>
+    <?= HtmlRenderer::create()->render($vite->resolve()) ?>
 </head>
 <body class="flex flex-col h-full bg-background text-foreground font-sans antialiased">
 <?php $this->beginBody(); ?>
