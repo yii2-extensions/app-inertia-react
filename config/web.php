@@ -77,11 +77,11 @@ $config = [
             'class' => Vite::class,
             '__construct()' => [
                 'configuration' => YII_ENV === 'dev'
-                    ? new DevelopmentConfiguration(
+                    ? DevelopmentConfiguration::create(
                         devServerUrl: 'http://localhost:5173',
                         inlineModuleProviders: [new ReactRefreshPreambleProvider()],
                     )
-                    : new ProductionConfiguration(
+                    : ProductionConfiguration::create(
                         manifestPath: dirname(__DIR__) . '/public/build/.vite/manifest.json',
                         assetBaseUrl: '/build',
                     ),
@@ -104,7 +104,7 @@ $config = [
         'request' => [
             'class' => \yii\inertia\web\Request::class,
             // !!! insert a secret key in the following (if it is empty) - this is required by cookie validation
-            'cookieValidationKey' => '',
+            'cookieValidationKey' => '1',
             'parsers' => [
                 'application/json' => \yii\web\JsonParser::class,
             ],
