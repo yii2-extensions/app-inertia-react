@@ -33,7 +33,7 @@ export default function Signup() {
 
   return (
     <>
-      <Head title="Create a new account" />
+      <Head title="Sign up" />
 
       <AuthShell
         eyebrow="Create account"

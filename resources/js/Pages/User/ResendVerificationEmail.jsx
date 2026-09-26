@@ -34,7 +34,7 @@ export default function ResendVerificationEmail() {
 
   return (
     <>
-      <Head title="Resend verification email" />
+      <Head title="Verify email" />
 
       <AuthShell
         eyebrow="Verification"

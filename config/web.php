@@ -4,15 +4,20 @@ declare(strict_types=1);
 
 use app\models\User;
 use app\vite\ReactRefreshPreambleProvider;
+use PHPForge\Debug\Capture\CapturePolicy;
+use PHPForge\Inertia\Debug\{InertiaCollector, InertiaPanel};
 use PHPForge\Vite\Configuration\{DevelopmentConfiguration, ProductionConfiguration};
+use PHPForge\Vite\Debug\{ViteCollector, VitePanel};
 use PHPForge\Vite\Vite;
 use yii\caching\FileCache;
-use yii\inertia\Bootstrap;
-use yii\inertia\Manager;
+use yii\debug\Module as DebugModule;
+use yii\inertia\{Bootstrap, Manager};
+use yii\inertia\web\Request as InertiaRequest;
 use yii\log\FileTarget;
 use yii\mail\MailerInterface;
 use yii\rbac\PhpManager;
 use yii\symfonymailer\Mailer;
+use yii\web\JsonParser;
 
 $params = require __DIR__ . '/params.php';
 $db = require __DIR__ . '/db.php';
@@ -102,16 +107,27 @@ $config = [
         ],
         'mailer' => MailerInterface::class,
         'request' => [
-            'class' => \yii\inertia\web\Request::class,
+            'class' => InertiaRequest::class,
             // !!! insert a secret key in the following (if it is empty) - this is required by cookie validation
             'cookieValidationKey' => '',
             'parsers' => [
-                'application/json' => \yii\web\JsonParser::class,
+                'application/json' => JsonParser::class,
             ],
         ],
         'urlManager' => [
             'enablePrettyUrl' => true,
             'showScriptName' => false,
+            'rules' => [
+                '/' => 'site/index',
+                'about' => 'site/about',
+                'login' => 'user/login',
+                'logout' => 'user/logout',
+                'signup' => 'user/signup',
+                'users' => 'user/index',
+                'password-reset/<token:[\\w\\-]+>' => 'user/reset-password',
+                'verify-email/<token:[\\w\\-]+>' => 'user/verify-email',
+                '<controller:[\\w\\-]+>/<action:[\\w\\-]+>' => '<controller>/<action>',
+            ],
         ],
         'user' => [
             'enableAutoLogin' => true,
@@ -132,15 +148,31 @@ $config = [
         ],
     ],
     'controllerNamespace' => 'app\\controllers',
+    'modules' => [],
     'params' => $params,
 ];
 
 if (YII_DEBUG) {
     $config['bootstrap'][] = 'debug';
-    $config['modules'] = [
-        'debug' => [
-            'class' => \yii\debug\Module::class,
-            'allowedIPs' => $debugAllowedIPs,
+
+    $config['modules']['debug'] = [
+        'class' => DebugModule::class,
+        'allowedIPs' => $debugAllowedIPs,
+        'collectors' => [
+            'inertia' => static fn(CapturePolicy $policy): InertiaCollector => new InertiaCollector(
+                $policy->redact(...),
+                $policy->redactUrl(...),
+            ),
+            'vite' => ViteCollector::class,
+        ],
+        'panels' => [
+            'inertia' => InertiaPanel::class,
+            'vite' => VitePanel::class,
+        ],
+        // collector ID => application component that emits the events
+        'dispatchers' => [
+            'inertia' => 'inertia',
+            'vite' => 'inertiaReact',
         ],
     ];
 }

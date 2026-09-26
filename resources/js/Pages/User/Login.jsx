@@ -33,7 +33,7 @@ export default function Login() {
 
   return (
     <>
-      <Head title="Login to your account" />
+      <Head title="Log in" />
 
       <AuthShell
         eyebrow="Sign in"
