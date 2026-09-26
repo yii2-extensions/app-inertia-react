@@ -34,7 +34,7 @@ export default function RequestPasswordReset() {
 
   return (
     <>
-      <Head title="Reset your password" />
+      <Head title="Reset password" />
 
       <AuthShell
         eyebrow="Recovery"

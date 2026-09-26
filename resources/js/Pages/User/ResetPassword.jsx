@@ -36,7 +36,7 @@ export default function ResetPassword({ token }) {
 
   return (
     <>
-      <Head title="Set your new password" />
+      <Head title="New password" />
 
       <AuthShell
         eyebrow="New password"

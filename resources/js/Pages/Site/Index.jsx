@@ -189,11 +189,11 @@ export default function Index({ protocolFeed, runtime }) {
     return (
         <>
             <Head>
-                <title>Yii 22.0 Preview — Modern PHP, familiar Yii</title>
+                <title>Yii 22 Preview</title>
                 <meta
                     head-key="description"
                     name="description"
-                    content="Explore the Yii 22.0 development line with PHP 8.3, Inertia 3, React 19, and Vite 8."
+                    content="A working Yii 22, Inertia 3, React 19, and Vite 8 reference application."
                 />
             </Head>
 

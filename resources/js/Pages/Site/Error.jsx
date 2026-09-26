@@ -8,7 +8,7 @@ export default function Error({
 }) {
   return (
     <>
-      <Head title={String(status)} />
+      <Head title={`Error ${status}`} />
 
       <div className="flex grow items-center justify-center text-center">
         <div className="mx-auto max-w-sm sm:max-w-md md:max-w-lg">
